@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# Build files
+build/
+
+# vscode files
+# .vscode/ # temporary for debug purposes left
