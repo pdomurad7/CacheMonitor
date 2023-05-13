@@ -1,13 +1,9 @@
 #include <redis_handler.h>
 #include <sw/redis++/redis++.h>
 
-RedisHandler::RedisHandler(sw::redis::Redis &redis) {
-    redis_ = &redis;
-}
+RedisHandler::RedisHandler() : Redis("tcp://127.0.0.1:6379") {}
 
-void RedisHandler::set_db(int db) {
-    db_ = db;
-}
-int RedisHandler::get_db() {
-    return db_;
+RedisHandler& RedisHandler::getInstance() {
+    static RedisHandler instance;
+    return instance;
 }
