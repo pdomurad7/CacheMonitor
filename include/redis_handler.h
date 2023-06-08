@@ -8,11 +8,11 @@
 class RedisHandler : public sw::redis::Redis {
     RedisHandler();
     std::map<std::string, std::set<std::string>*> topic_map_;
+    static RedisHandler* instance_;
 public:
     RedisHandler(const RedisHandler&) = delete;
     RedisHandler& operator=(const RedisHandler&) = delete;
-
-    static RedisHandler& getInstance();
+    static RedisHandler* getInstance();
 };
 
 #endif // REDIS_HANDLER_H

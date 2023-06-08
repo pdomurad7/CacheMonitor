@@ -36,3 +36,7 @@ build/
 
 # vscode files
 # .vscode/ # temporary for debug purposes left
+
+# clion files
+.idea/
+cmake-build-debug/

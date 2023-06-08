@@ -3,15 +3,21 @@
 
 #include <map>
 #include <string>
-#include <topic.h>
+
+class Topic;
 
 class TopicManager {
-    static std::map<std::string, Topic*> topics_;
+    TopicManager(const TopicManager&) = delete;
+    TopicManager& operator=(const TopicManager&) = delete;
+    TopicManager()=default;
+    std::map<std::string, Topic*> topics_;
+    static TopicManager* instance_;
 public:
-    static Topic* getTopic(std::string topic_path);
-    static void addTopic(Topic* topic);
-    static void removeTopic(std::string topic_path);
-    static std::set<std::string> getTopics();
+    static TopicManager* getInstance();
+    Topic* getTopic(std::string);
+    void createTopic(std::string);
+    void removeTopic(std::string);
+    void changeTopic(std::string, std::string, std::string);
 };
 
 #endif // TOPIC_MANAGER_H

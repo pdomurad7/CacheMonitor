@@ -2,39 +2,52 @@
 #define CACHE_VALUE_H
 
 #include <string>
-#include <topic.h>
+#include <any>
+
 #include <redis_handler.h>
+
+class Topic;
 
 class AbstractCacheValue{
 protected:
-    std::string name_;
+    std::string id_;
     Topic* topic_;
-    RedisHandler* redis_handler_;
 
 public:
-    AbstractCacheValue(std::string name, Topic* topic);
-    // virtual ~AbstractCacheValue();
-    virtual std::string getName() = 0;
-    virtual void setName(std::string name) = 0;
-    virtual Topic* getTopic() = 0;
-    virtual void setTopic(Topic* topic) = 0;
-    virtual void changeTopic(std::string topic_path) = 0;
-    virtual void changeTopic(Topic* topic) = 0;
+    AbstractCacheValue(std::string, std::string);
+    virtual ~AbstractCacheValue() = default;
+    std::string getId();
+    void setId(std::string);
+    Topic* getTopic();
+    void changeTopic(std::string);
+    std::string toString();
+    int toInt();
+    float toFloat();
+    virtual std::any getValue() = 0;
+    virtual void addValueToRedis() = 0;
 };
 
-class CacheValue : private AbstractCacheValue{ // TEMPORARY SUPPORT ONLY STRING VALUES
+class SimpleCacheValue : public AbstractCacheValue{
+protected:
+    template <typename T>
+    std::any deserialize(T value){
+        return std::any_cast<T>(value);
+    }
+
 public:
-    CacheValue(std::string name, Topic* topic);
-    ~CacheValue();
-    std::string getName();
-    void setName(std::string name);
-    Topic* getTopic();
-    void setTopic(Topic* topic);
-    void changeTopic(std::string topic_path);
-    void changeTopic(Topic* topic);
-    // TODO change to template
-    void setValue(std::string value);
-    std::string getValue();
+    SimpleCacheValue(std::string, std::string);
+    virtual ~SimpleCacheValue() = default;
+};
+
+class CacheString : public SimpleCacheValue{
+    std::string value_;
+public:
+    CacheString(std::string, std::string);
+    CacheString(std::string, std::string, std::string);
+    ~CacheString()=default;
+    std::any getValue() override;
+    void setValue(std::string);
+    void addValueToRedis() override;
 };
 
 #endif // CACHE_VALUE_H

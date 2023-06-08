@@ -1,59 +1,63 @@
 #include <cache_value.h>
 #include <topic_manager.h>
+#include <topic.h>
+#include <iostream>
 
-AbstractCacheValue::AbstractCacheValue(std::string name, Topic* topic){
-    name_ = name;
-    topic_ = topic;
-    redis_handler_ = &RedisHandler::getInstance();
-    };
-
-CacheValue::CacheValue(std::string name, Topic* topic) : AbstractCacheValue(name, topic){};
-
-CacheValue::~CacheValue(){
-    std::string path = topic_->getTopicPath() + ":" + name_;
-    redis_handler_->del(path);
+AbstractCacheValue::AbstractCacheValue(std::string id, std::string topic_path){
+    id_ = id;
+    topic_ = TopicManager::getInstance()->getTopic(topic_path);
 }
 
-void CacheValue::setName(std::string name){
-    name_ = name;
+std::string AbstractCacheValue::getId(){
+    return id_;
 }
 
-std::string CacheValue::getName(){
-    return name_;
+void AbstractCacheValue::setId(std::string id){
+    id_ = id;
 }
 
-void CacheValue::setValue(std::string value){
-    std::string path = topic_->getTopicPath() + ":" + name_;
-    redis_handler_->set(path, value);
-}
-
-std::string CacheValue::getValue(){
-    std::string path = topic_->getTopicPath() + ":" + name_;
-    return *redis_handler_->get(path);
-}
-
-void CacheValue::setTopic(Topic* topic){
-    topic_ = topic;
-}
-
-Topic* CacheValue::getTopic(){
+Topic* AbstractCacheValue::getTopic(){
     return topic_;
 }
 
-void CacheValue::changeTopic(std::string topic_path){
-    std::string path = topic_->getTopicPath() + ":" + name_;
-    auto val = redis_handler_->get(path);
-    redis_handler_->del(path);
-    topic_ = TopicManager::getTopic(topic_path);
-    path = topic_->getTopicPath() + ":" + name_;
-    redis_handler_->set(path, *val);
+void AbstractCacheValue::changeTopic(std::string new_topic_path){
+    TopicManager::getInstance()->changeTopic(id_, topic_->getTopicPath(), new_topic_path);
 }
 
-void CacheValue::changeTopic(Topic* topic){
-    std::string path = topic_->getTopicPath() + ":" + name_;
-    auto val = redis_handler_->get(path);
-    redis_handler_->del(path);
-    topic_ = topic;
-    path = topic_->getTopicPath() + ":" + name_;
-    redis_handler_->set(path, *val);
+std::string AbstractCacheValue::toString(){
+    return std::any_cast<std::string>(getValue());
+}
+
+int AbstractCacheValue::toInt(){
+    return std::any_cast<int>(getValue());
+}
+
+float AbstractCacheValue::toFloat(){
+    return std::any_cast<float>(getValue());
+}
+
+SimpleCacheValue::SimpleCacheValue(std::string id, std::string topic_path) : AbstractCacheValue(id, topic_path){}
+
+CacheString::CacheString(std::string id, std::string topic_path) : SimpleCacheValue(id, topic_path){
+    // TODO same as in another constructor
+    TopicManager::getInstance()->getTopic(topic_path)->addCacheValue(this);
+}
+
+CacheString::CacheString(std::string id, std::string topic_path, std::string value) : SimpleCacheValue(id, topic_path){
+    value_ = value;
+    // TODO check if topic exists
+    TopicManager::getInstance()->getTopic(topic_path)->addCacheValue(this);
+}
+
+std::any CacheString::getValue() {
+    // TODO if id in changed parameters then get from redis
+    return deserialize(value_);
+}
+
+void CacheString::setValue(std::string value){
+    value_ = value;
+}
+
+void CacheString::addValueToRedis(){
+    RedisHandler::getInstance()->set(topic_->getTopicPath() + ":" + id_, value_);
 }
