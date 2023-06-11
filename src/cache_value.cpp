@@ -42,7 +42,7 @@ float AbstractCacheValue::toFloat(){
 }
 
 void AbstractCacheValue::removeValueFromRedis_(){
-    RedisHandler::getInstance()->del(topic_->getTopicPath() + ":" + id_);
+    RedisHandler::getInstance()->getRedis()->del(topic_->getTopicPath() + ":" + id_);
 }
 
 SimpleCacheValue::SimpleCacheValue(std::string id, std::string topic_path) : AbstractCacheValue(id, topic_path){}
@@ -71,5 +71,5 @@ void CacheString::setValue(std::string value){
 }
 
 void CacheString::addValueToRedis_(){
-    RedisHandler::getInstance()->set(topic_->getTopicPath() + ":" + id_, value_);
+    RedisHandler::getInstance()->getRedis()->set(topic_->getTopicPath() + ":" + id_, value_);
 }

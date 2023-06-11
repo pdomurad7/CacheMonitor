@@ -25,7 +25,7 @@ void TopicManager::createTopic(std::string topic_path){
 void TopicManager::removeTopic(std::string topic_path){
     delete topics_[topic_path];
     topics_.erase(topic_path);
-    RedisHandler::getInstance()->del(topic_path);
+    RedisHandler::getInstance()->getRedis()->del(topic_path);
 }
 
 void TopicManager::changeTopic(std::string id, std::string old_topic_path, std::string new_topic_path){

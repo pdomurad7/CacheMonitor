@@ -23,13 +23,13 @@ void test_creating_topic_and_value(){
     // Checking if topic was created in redis
     std::unique_ptr<AbstractCacheValue> cache_value = std::make_unique<CacheString>("test_id", "test_topic", "test_value");
 
-    if(RedisHandler::getInstance()->exists("test_topic:test_id")){
+    if(RedisHandler::getInstance()->getRedis()->exists("test_topic:test_id")){
         std::cout << "." << std::endl;
     } else {
         std::cout << "Checking if topic with value was created in redis" << std::endl;
     }
 
-    std::unique_ptr<AbstractCacheValue> cache_value2 = std::make_unique<CacheString>("test_id2", "test_topic");    if(RedisHandler::getInstance()->exists("test_topic:test_id2")){
+    std::unique_ptr<AbstractCacheValue> cache_value2 = std::make_unique<CacheString>("test_id2", "test_topic");    if(RedisHandler::getInstance()->getRedis()->exists("test_topic:test_id2")){
         std::cout << "." << std::endl;
     } else {
         std::cout << "Checking if topic with default value was created in redis failed" << std::endl;
@@ -43,7 +43,7 @@ void test_creating_topic_and_value(){
         std::cout << "." << std::endl;
     }
     // Checking if topic was deleted in redis
-    if(RedisHandler::getInstance()->exists("test_topic")){
+    if(RedisHandler::getInstance()->getRedis()->exists("test_topic")){
         std::cout << "Checking if topic was deleted in redis failed" << std::endl;
     } else {
         std::cout << "." << std::endl;
@@ -55,9 +55,8 @@ void test_changing_topics(){
     TopicManager::getInstance()->createTopic("first_topic");
     TopicManager::getInstance()->createTopic("second_topic");
     std::shared_ptr<AbstractCacheValue> cache_value = std::make_shared<CacheString>("test_id", "first_topic", "test_value");
-    
     // Check if value is in first topic
-    if(RedisHandler::getInstance()->exists("first_topic:test_id")){
+    if(RedisHandler::getInstance()->getRedis()->exists("first_topic:test_id")){
         std::cout << "." << std::endl;
     } else {
         std::cout << "Checking if value is in first topic failed" << std::endl;
@@ -79,14 +78,14 @@ void test_changing_topics(){
     }
 
     // Check if value is in redis second topic
-    if(RedisHandler::getInstance()->exists("second_topic:test_id")){
+    if(RedisHandler::getInstance()->getRedis()->exists("second_topic:test_id")){
         std::cout << "." << std::endl;
     } else {
         std::cout << "Checking if value is in redis second topic failed" << std::endl;
     }
     
     // Check if value is not in first topic
-    if(RedisHandler::getInstance()->exists("first_topic:test_id")){
+    if(RedisHandler::getInstance()->getRedis()->exists("first_topic:test_id")){
         std::cout << "Checking if value is not in first topic failed" << std::endl;
     } else {
         std::cout << "." << std::endl;
@@ -112,8 +111,8 @@ int main(){
 //     std::shared_ptr<AbstractCacheValue> cache_value9 = std::make_shared<CacheString>("third_id_third_topic", "third_topic", "test_value");
 
 
-//     RedisHandler::getInstance()->command("config", "set", "notify-keyspace-events", "KEA");
-//     auto sub = RedisHandler::getInstance()->subscriber();
+//     RedisHandler::getInstance()->getRedis()->command("config", "set", "notify-keyspace-events", "KEA");
+//     auto sub = RedisHandler::getInstance()->getRedis()->subscriber();
 //     sub.psubscribe("__keyspace@0__:*");
 //     sub.on_pmessage([](std::string pattern, std::string channel, std::string msg) {
 //         std::istringstream msgstream(channel);
@@ -148,5 +147,6 @@ int main(){
 //     for (auto p : TopicManager::getInstance()->getTopic("third_topic")->check_changed_parameters()){
 //         std::cout<<p<<std::endl;
 //     }
+// auto redis = sw::redis::Redis("tcp://127.0.0.1:6379");
 
 }
