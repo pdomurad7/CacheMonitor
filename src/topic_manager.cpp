@@ -33,3 +33,15 @@ void TopicManager::changeTopic(std::string id, std::string old_topic_path, std::
     topics_[new_topic_path]->addCacheValue(topics_[old_topic_path]->cache_values_[id]);
     topics_[old_topic_path]->cache_values_.erase(id);
 }
+
+bool TopicManager::exists(std::string topic_path){
+    return topics_.find(topic_path) != topics_.end();
+}
+
+void TopicManager::addChangedParameter(std::string topic_path, std::string parameter){
+    if (!exists(topic_path))
+        return;
+    if (!topics_[topic_path]->exists(parameter))
+        return;
+    topics_[topic_path]->changed_parameters_.insert(parameter);
+}

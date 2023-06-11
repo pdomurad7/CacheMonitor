@@ -6,6 +6,7 @@
 #include <thread>
 #include <chrono>
 #include <memory>
+#include <sstream>
 
 void test_creating_topic_and_value(){
     std::cout << "Testing creating topic..." << std::endl;
@@ -53,8 +54,7 @@ void test_changing_topics(){
     std::cout << "Testing changing topics..." << std::endl;
     TopicManager::getInstance()->createTopic("first_topic");
     TopicManager::getInstance()->createTopic("second_topic");
-    // std::shared_ptr<AbstractCacheValue> cache_value = std::make_shared<CacheString>("test_id", "test_topic", "test_value");
-    AbstractCacheValue* cache_value = new CacheString("test_id", "first_topic", "test_value");
+    std::shared_ptr<AbstractCacheValue> cache_value = std::make_shared<CacheString>("test_id", "first_topic", "test_value");
     
     // Check if value is in first topic
     if(RedisHandler::getInstance()->exists("first_topic:test_id")){
@@ -91,11 +91,62 @@ void test_changing_topics(){
     } else {
         std::cout << "." << std::endl;
     }
-    delete cache_value;
 }
 
 
 int main(){
     test_creating_topic_and_value();
     test_changing_topics();
+
+//     TopicManager::getInstance()->createTopic("first_topic");
+//     TopicManager::getInstance()->createTopic("second_topic");
+//     TopicManager::getInstance()->createTopic("third_topic");
+//     std::shared_ptr<AbstractCacheValue> cache_value = std::make_shared<CacheString>("first_id_first_topic", "first_topic", "test_value");
+//     std::shared_ptr<AbstractCacheValue> cache_value2 = std::make_shared<CacheString>("second_id_first_topic", "first_topic", "test_value");
+//     std::shared_ptr<AbstractCacheValue> cache_value3 = std::make_shared<CacheString>("third_id_first_topic", "first_topic", "test_value");
+//     std::shared_ptr<AbstractCacheValue> cache_value4 = std::make_shared<CacheString>("first_id_second_topic", "second_topic", "test_value");
+//     std::shared_ptr<AbstractCacheValue> cache_value5 = std::make_shared<CacheString>("second_id_second_topic", "second_topic", "test_value");
+//     std::shared_ptr<AbstractCacheValue> cache_value6 = std::make_shared<CacheString>("third_id_second_topic", "second_topic", "test_value");
+//     std::shared_ptr<AbstractCacheValue> cache_value7 = std::make_shared<CacheString>("first_id_third_topic", "third_topic", "test_value");
+//     std::shared_ptr<AbstractCacheValue> cache_value8 = std::make_shared<CacheString>("second_id_third_topic", "third_topic", "test_value");
+//     std::shared_ptr<AbstractCacheValue> cache_value9 = std::make_shared<CacheString>("third_id_third_topic", "third_topic", "test_value");
+
+
+//     RedisHandler::getInstance()->command("config", "set", "notify-keyspace-events", "KEA");
+//     auto sub = RedisHandler::getInstance()->subscriber();
+//     sub.psubscribe("__keyspace@0__:*");
+//     sub.on_pmessage([](std::string pattern, std::string channel, std::string msg) {
+//         std::istringstream msgstream(channel);
+//         std::getline(msgstream, channel, ':');
+//         std::string topic_path;
+//         std::string value_id;
+
+//         std::getline(msgstream, topic_path, ':');
+//         std::getline(msgstream, value_id, ':');
+
+//         TopicManager::getInstance()->addChangedParameter(topic_path, value_id);
+//     });
+
+
+//     auto counter = 0;
+
+//     while (counter < 5) {
+//         sub.consume();
+//         std::cout<<counter<<std::endl;
+//         counter++;
+//         // std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+// }
+
+//     for(auto p : TopicManager::getInstance()->getTopic("first_topic")->check_changed_parameters()){
+//         std::cout<<p<<std::endl;
+//     }
+
+//     for (auto p : TopicManager::getInstance()->getTopic("second_topic")->check_changed_parameters()){
+//         std::cout<<p<<std::endl;
+//     }
+
+//     for (auto p : TopicManager::getInstance()->getTopic("third_topic")->check_changed_parameters()){
+//         std::cout<<p<<std::endl;
+//     }
+
 }

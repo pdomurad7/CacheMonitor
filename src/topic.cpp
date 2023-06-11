@@ -3,9 +3,9 @@
 #include <cache_value.h>
 #include <iostream>
 
-void Topic::worker_(float interval){
-    // TODO: implement
-};
+Topic::Topic(std::string topic_path){
+    topic_path_ = topic_path;
+}
 
 std::string Topic::getTopicPath(){
     return topic_path_;
@@ -27,10 +27,6 @@ void Topic::removeCacheValue(std::string id){
     delete cache_values_[id];
     cache_values_.erase(id);
     RedisHandler::getInstance()->del(topic_path_ + ":" + id);
-}
-
-Topic::Topic(std::string topic_path){
-    topic_path_ = topic_path;
 }
 
 AbstractCacheValue* Topic::getCacheValue(std::string id){

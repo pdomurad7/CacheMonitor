@@ -18,6 +18,8 @@ public:
     void createTopic(std::string);
     void removeTopic(std::string);
     void changeTopic(std::string, std::string, std::string);
+    bool exists(std::string);
+    void addChangedParameter(std::string, std::string);
 };
 
 #endif // TOPIC_MANAGER_H
