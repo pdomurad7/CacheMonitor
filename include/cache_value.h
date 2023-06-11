@@ -12,7 +12,8 @@ class AbstractCacheValue{
 protected:
     std::string id_;
     Topic* topic_;
-
+    void removeValueFromRedis_();
+    virtual void addValueToRedis_() = 0;
 public:
     AbstractCacheValue(std::string, std::string);
     virtual ~AbstractCacheValue() = default;
@@ -24,7 +25,6 @@ public:
     int toInt();
     float toFloat();
     virtual std::any getValue() = 0;
-    virtual void addValueToRedis() = 0;
 };
 
 class SimpleCacheValue : public AbstractCacheValue{
@@ -41,13 +41,13 @@ public:
 
 class CacheString : public SimpleCacheValue{
     std::string value_;
+    void addValueToRedis_() override;
 public:
     CacheString(std::string, std::string);
     CacheString(std::string, std::string, std::string);
     ~CacheString()=default;
     std::any getValue() override;
     void setValue(std::string);
-    void addValueToRedis() override;
 };
 
 #endif // CACHE_VALUE_H

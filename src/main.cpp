@@ -51,46 +51,47 @@ void test_creating_topic_and_value(){
 
 void test_changing_topics(){
     std::cout << "Testing changing topics..." << std::endl;
-    TopicManager::getInstance()->createTopic("test_topic");
-    TopicManager::getInstance()->createTopic("test_topic2");
+    TopicManager::getInstance()->createTopic("first_topic");
+    TopicManager::getInstance()->createTopic("second_topic");
     // std::shared_ptr<AbstractCacheValue> cache_value = std::make_shared<CacheString>("test_id", "test_topic", "test_value");
-    AbstractCacheValue* cache_value = new CacheString("test_id", "test_topic", "test_value");
+    AbstractCacheValue* cache_value = new CacheString("test_id", "first_topic", "test_value");
     
-    // Check if value is in topic 1
-    if(RedisHandler::getInstance()->exists("test_topic:test_id")){
+    // Check if value is in first topic
+    if(RedisHandler::getInstance()->exists("first_topic:test_id")){
         std::cout << "." << std::endl;
     } else {
-        std::cout << "Checking if value is in topic 1 failed" << std::endl;
+        std::cout << "Checking if value is in first topic failed" << std::endl;
     }
-    cache_value->changeTopic("test_topic2");
+    cache_value->changeTopic("second_topic");
 
-    // Check if value is in topic 2 set
-    if(TopicManager::getInstance()->getTopic("test_topic2")->exists("test_value")){
+    // Check if value is in second topic set
+    if(TopicManager::getInstance()->getTopic("second_topic")->exists("test_id")){
         std::cout << "." << std::endl;
     } else {
-        std::cout << "Checking if value is in topic 2 set failed" << std::endl;
-    }
-
-    // Check if value is not in topic 1 set
-    if(TopicManager::getInstance()->getTopic("test_topic")->exists("test_value")){
-        std::cout << "Check if value is not in topic 1 set failed" << std::endl;
-    } else {
-        std::cout << "." << std::endl;
+        std::cout << "Checking if value is in second topic set failed" << std::endl;
     }
 
-    // Check if value is in redis topic 2
-    if(RedisHandler::getInstance()->exists("test_topic2:test_id")){
+    // Check if value is not in first topic set
+    if(TopicManager::getInstance()->getTopic("first_topic")->exists("test_id")){
+        std::cout << "Check if value is not in first topic set failed" << std::endl;
+    } else {
+        std::cout << "." << std::endl;
+    }
+
+    // Check if value is in redis second topic
+    if(RedisHandler::getInstance()->exists("second_topic:test_id")){
         std::cout << "." << std::endl;
     } else {
-        std::cout << "Checking if value is in redis topic 2 failed" << std::endl;
+        std::cout << "Checking if value is in redis second topic failed" << std::endl;
     }
     
-    // Check if value is not in topic 1
-    if(RedisHandler::getInstance()->exists("test_topic:test_id")){
-        std::cout << "Checking if value is not in topic 1 failed" << std::endl;
+    // Check if value is not in first topic
+    if(RedisHandler::getInstance()->exists("first_topic:test_id")){
+        std::cout << "Checking if value is not in first topic failed" << std::endl;
     } else {
         std::cout << "." << std::endl;
     }
+    delete cache_value;
 }
 
 

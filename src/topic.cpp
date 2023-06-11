@@ -21,7 +21,6 @@ void Topic::clear_changed_parameters(){
 
 void Topic::addCacheValue(AbstractCacheValue* cache_value){
     cache_values_[cache_value->getId()] = cache_value;
-    cache_value->addValueToRedis();
 }
 
 void Topic::removeCacheValue(std::string id){
