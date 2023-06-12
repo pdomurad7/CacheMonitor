@@ -111,20 +111,20 @@ int main(){
 //     std::shared_ptr<AbstractCacheValue> cache_value9 = std::make_shared<CacheString>("third_id_third_topic", "third_topic", "test_value");
 
 
-//     RedisHandler::getInstance()->getRedis()->command("config", "set", "notify-keyspace-events", "KEA");
-//     auto sub = RedisHandler::getInstance()->getRedis()->subscriber();
-//     sub.psubscribe("__keyspace@0__:*");
-//     sub.on_pmessage([](std::string pattern, std::string channel, std::string msg) {
-//         std::istringstream msgstream(channel);
-//         std::getline(msgstream, channel, ':');
-//         std::string topic_path;
-//         std::string value_id;
+    RedisHandler::getInstance()->getRedis()->command("config", "set", "notify-keyspace-events", "KEA");
+    auto sub = RedisHandler::getInstance()->getRedis()->subscriber();
+    sub.psubscribe("__keyspace@0__:*");
+    sub.on_pmessage([](std::string pattern, std::string channel, std::string msg) {
+        std::istringstream msgstream(channel);
+        std::getline(msgstream, channel, ':');
+        std::string topic_path;
+        std::string value_id;
 
-//         std::getline(msgstream, topic_path, ':');
-//         std::getline(msgstream, value_id, ':');
+        std::getline(msgstream, topic_path, ':');
+        std::getline(msgstream, value_id, ':');
 
-//         TopicManager::getInstance()->addChangedParameter(topic_path, value_id);
-//     });
+        TopicManager::getInstance()->addChangedParameter(topic_path, value_id);
+    });
 
 
 //     auto counter = 0;
