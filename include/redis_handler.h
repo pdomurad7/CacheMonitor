@@ -5,17 +5,23 @@
 #include <map>
 #include <set>
 #include <memory>
+#include <thread>
+#include <atomic>
 
 class RedisHandler {
+    static RedisHandler instance_;
+    std::unique_ptr<sw::redis::Redis> redis_;
+    sw::redis::Subscriber sub_;
+    std::atomic<bool> stop_worker_;
+    sw::redis::ConnectionOptions connection_options_();
+    std::thread worker_thread_;
+    void worker_(sw::redis::Subscriber&, int, const std::atomic<bool>&);
     RedisHandler();
-    std::map<std::string, std::set<std::string>*> topic_map_;
-    static RedisHandler* instance_;
-    // std::unique_ptr<sw::redis::Redis> redis_;
-    sw::redis::Redis* redis_;
 public:
+    ~RedisHandler();
     RedisHandler(const RedisHandler&) = delete;
     RedisHandler& operator=(const RedisHandler&) = delete;
-    static RedisHandler* getInstance();
+    static RedisHandler& getInstance();
     sw::redis::Redis* getRedis();
 
 };

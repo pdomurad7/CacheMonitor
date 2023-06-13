@@ -40,3 +40,6 @@ build/
 # clion files
 .idea/
 cmake-build-debug/
+
+# redis
+dump.rdb

@@ -3,12 +3,9 @@
 #include <redis_handler.h>
 #include <iostream>
 
-TopicManager* TopicManager::instance_ = nullptr;
-
-TopicManager* TopicManager::getInstance(){
-    if(instance_ == nullptr){
-        instance_ = new TopicManager();
-    }
+TopicManager& TopicManager::getInstance()
+{
+    static TopicManager instance_;
     return instance_;
 }
 
@@ -25,7 +22,7 @@ void TopicManager::createTopic(std::string topic_path){
 void TopicManager::removeTopic(std::string topic_path){
     delete topics_[topic_path];
     topics_.erase(topic_path);
-    RedisHandler::getInstance()->getRedis()->del(topic_path);
+    RedisHandler::getInstance().getRedis()->del(topic_path);
 }
 
 void TopicManager::changeTopic(std::string id, std::string old_topic_path, std::string new_topic_path){
@@ -41,7 +38,7 @@ bool TopicManager::exists(std::string topic_path){
 void TopicManager::addChangedParameter(std::string topic_path, std::string parameter){
     if (!exists(topic_path))
         return;
-    if (!topics_[topic_path]->exists(parameter))
-        return;
+    // if (!topics_[topic_path]->exists(parameter))
+    //     return;
     topics_[topic_path]->changed_parameters_.insert(parameter);
 }

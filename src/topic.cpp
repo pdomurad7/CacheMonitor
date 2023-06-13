@@ -26,7 +26,7 @@ void Topic::addCacheValue(AbstractCacheValue* cache_value){
 void Topic::removeCacheValue(std::string id){
     delete cache_values_[id];
     cache_values_.erase(id);
-    RedisHandler::getInstance()->getRedis()->del(topic_path_ + ":" + id);
+    RedisHandler::getInstance().getRedis()->del(topic_path_ + ":" + id);
 }
 
 AbstractCacheValue* Topic::getCacheValue(std::string id){
