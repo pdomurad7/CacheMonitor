@@ -5,7 +5,7 @@
 
 AbstractCacheValue::AbstractCacheValue(std::string id, std::string topic_path){
     id_ = id;
-    topic_ = TopicManager::getInstance()->getTopic(topic_path);
+    topic_ = TopicManager::getInstance().getTopic(topic_path);
 }
 
 std::string AbstractCacheValue::getId(){
@@ -24,8 +24,8 @@ void AbstractCacheValue::changeTopic(std::string new_topic_path){
     // TODO: handling changing on non existing topic
     std::string old_topic_path = topic_->getTopicPath();
     removeValueFromRedis_();
-    topic_ = TopicManager::getInstance()->getTopic(new_topic_path);
-    TopicManager::getInstance()->changeTopic(id_, old_topic_path, new_topic_path);
+    topic_ = TopicManager::getInstance().getTopic(new_topic_path);
+    TopicManager::getInstance().changeTopic(id_, old_topic_path, new_topic_path);
     addValueToRedis_();
 }
 
@@ -42,7 +42,7 @@ float AbstractCacheValue::toFloat(){
 }
 
 void AbstractCacheValue::removeValueFromRedis_(){
-    RedisHandler::getInstance()->getRedis()->del(topic_->getTopicPath() + ":" + id_);
+    RedisHandler::getInstance().getRedis()->del(topic_->getTopicPath() + ":" + id_);
 }
 
 SimpleCacheValue::SimpleCacheValue(std::string id, std::string topic_path) : AbstractCacheValue(id, topic_path){}
@@ -50,14 +50,14 @@ SimpleCacheValue::SimpleCacheValue(std::string id, std::string topic_path) : Abs
 
 CacheString::CacheString(std::string id, std::string topic_path) : SimpleCacheValue(id, topic_path){
     // TODO same as in another constructor
-    TopicManager::getInstance()->getTopic(topic_path)->addCacheValue(this);
+    TopicManager::getInstance().getTopic(topic_path)->addCacheValue(this);
     addValueToRedis_();
 }
 
 CacheString::CacheString(std::string id, std::string topic_path, std::string value) : SimpleCacheValue(id, topic_path){
     value_ = value;
     // TODO check if topic exists
-    TopicManager::getInstance()->getTopic(topic_path)->addCacheValue(this);
+    TopicManager::getInstance().getTopic(topic_path)->addCacheValue(this);
     addValueToRedis_();
 }
 
@@ -71,5 +71,5 @@ void CacheString::setValue(std::string value){
 }
 
 void CacheString::addValueToRedis_(){
-    RedisHandler::getInstance()->getRedis()->set(topic_->getTopicPath() + ":" + id_, value_);
+    RedisHandler::getInstance().getRedis()->set(topic_->getTopicPath() + ":" + id_, value_);
 }

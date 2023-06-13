@@ -11,9 +11,9 @@ class TopicManager {
     TopicManager& operator=(const TopicManager&) = delete;
     TopicManager()=default;
     std::map<std::string, Topic*> topics_;
-    static TopicManager* instance_;
+    static TopicManager instance_;
 public:
-    static TopicManager* getInstance();
+    static TopicManager& getInstance();
     Topic* getTopic(std::string);
     void createTopic(std::string);
     void removeTopic(std::string);
