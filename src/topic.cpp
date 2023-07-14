@@ -15,6 +15,10 @@ std::set<std::string> Topic::check_changed_parameters(){
     return changed_parameters_;
 }
 
+void Topic::removeChangedParameter(std::string id){
+    changed_parameters_.erase(id);
+}
+
 void Topic::clear_changed_parameters(){
     changed_parameters_.clear();
 }

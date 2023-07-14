@@ -10,7 +10,7 @@
 
 class RedisHandler {
     static RedisHandler instance_;
-    std::unique_ptr<sw::redis::Redis> redis_;
+    std::shared_ptr<sw::redis::Redis> redis_;
     sw::redis::Subscriber sub_;
     std::atomic<bool> stop_worker_;
     sw::redis::ConnectionOptions connection_options_();

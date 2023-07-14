@@ -7,6 +7,8 @@
 #include <chrono>
 #include <memory>
 #include <sstream>
+#include <cassert>
+#include <gtest/gtest.h>
 
 void test_creating_topic_and_value(){
     std::cout << "Testing creating topic..." << std::endl;
@@ -28,7 +30,8 @@ void test_creating_topic_and_value(){
         std::cout << "Checking if topic with value was created in redis" << std::endl;
     }
 
-    std::unique_ptr<AbstractCacheValue> cache_value2 = std::make_unique<CacheString>("test_id2", "test_topic");    if(RedisHandler::getInstance().getRedis()->exists("test_topic:test_id2")){
+    std::unique_ptr<AbstractCacheValue> cache_value2 = std::make_unique<CacheString>("test_id2", "test_topic");    
+    if(RedisHandler::getInstance().getRedis()->exists("test_topic:test_id2")){
         std::cout << "." << std::endl;
     } else {
         std::cout << "Checking if topic with default value was created in redis failed" << std::endl;
@@ -90,18 +93,54 @@ void test_changing_topics(){
     }
 }
 
+void test_check_changed_parameters(){
+    TopicManager::getInstance().createTopic("changed_parameters_topic");
+    if(TopicManager::getInstance().getTopic("changed_parameters_topic")->check_changed_parameters().size() == 0){
+        std::cout << "." << std::endl;
+    } else {
+        std::cout << "Checking if changed parameters topic is empty failed" << std::endl;
+    }
+
+    std::shared_ptr<AbstractCacheValue> cache_value = std::make_shared<CacheString>("test_id", "changed_parameters_topic", "test_value");
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    if(TopicManager::getInstance().getTopic("changed_parameters_topic")->check_changed_parameters().size() == 1){
+        std::cout << "." << std::endl;
+    } else {
+        std::cout << "Checking if changed parameters topic has one parameter failed" << std::endl;
+    }
+    if (TopicManager::getInstance().getTopic("changed_parameters_topic")->check_changed_parameters().contains("test_id")){
+        std::cout << "." << std::endl;
+    } else {
+        std::cout << "Checking if changed parameters topic has correct parameter failed" << std::endl;
+    }
+}
+
+// void test_get_changed_value_in_redis(){
+//     TopicManager::getInstance().createTopic("changed_parameters_topic");
+//     std::shared_ptr<AbstractCacheValue> cache_value = std::make_shared<CacheString>("test_id", "changed_parameters_topic", "test_value");
+//     if(TopicManager::)
+// }
+int add(int a, int b) {
+    return a + b;
+}
+
+TEST(AddTest, HandlesPositiveInput) {
+    EXPECT_EQ(6, add(2, 4));
+}
 
 int main(){
-    test_creating_topic_and_value();
-    test_changing_topics();
-    // To test check_changed_parameters behaviour you can use redis-commander/redis-cli and uncomment this code 
+    // test_creating_topic_and_value();
+    // test_changing_topics();
+    // test_check_changed_parameters();
+    // Also to double check test check_changed_parameters behaviour you can use redis-commander/redis-cli and uncomment this code 
     
     // while(true){
     //     std::cout<< "Changed parameters: " << std::endl;
-    //     for(auto x : TopicManager::getInstance().getTopic("first_topic")->check_changed_parameters()){
+    //     for(auto x : TopicManager::getInstance().getTopic("second_topic")->check_changed_parameters()){
     //         std::cout << x << std::endl;
     //     }
     //     std::this_thread::sleep_for(std::chrono::seconds(1));
     // }
-
+    ::testing::InitGoogleTest();
+    return RUN_ALL_TESTS();
 }

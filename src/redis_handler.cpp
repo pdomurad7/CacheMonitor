@@ -2,7 +2,7 @@
 #include <topic_manager.h>
 #include <iostream>
 
-RedisHandler::RedisHandler() : redis_(std::make_unique<sw::redis::Redis>(connection_options_())),
+RedisHandler::RedisHandler() : redis_(std::make_shared<sw::redis::Redis>(connection_options_())),
                                sub_(redis_->subscriber()),
                                stop_worker_(false)
 {
@@ -17,8 +17,8 @@ RedisHandler::RedisHandler() : redis_(std::make_unique<sw::redis::Redis>(connect
 
         std::getline(msgstream, topic_path, ':');
         std::getline(msgstream, value_id, ':');
-
         TopicManager::getInstance().addChangedParameter(topic_path, value_id); });
+    // TODO: replace this magic number with some config, same with connection_options_
     worker_thread_ = std::thread(&RedisHandler::worker_, this, std::ref(sub_), 1, std::ref(stop_worker_));
 }
 
@@ -50,9 +50,9 @@ sw::redis::ConnectionOptions RedisHandler::connection_options_()
 
 void RedisHandler::worker_(sw::redis::Subscriber &sub_ptr, int interval, const std::atomic<bool> &stop_worker_)
 {
-    while (stop_worker_)
+    while (!stop_worker_)
     {
         sub_ptr.consume();
-        std::this_thread::sleep_for(std::chrono::seconds(interval));
+        std::this_thread::sleep_for(std::chrono::microseconds(interval));
     }
 }

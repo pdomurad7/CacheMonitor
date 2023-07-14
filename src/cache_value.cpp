@@ -62,12 +62,16 @@ CacheString::CacheString(std::string id, std::string topic_path, std::string val
 }
 
 std::any CacheString::getValue() {
-    // TODO if id in changed parameters then get from redis
+    if (TopicManager::getInstance().getTopic(topic_->getTopicPath())->exists(id_)) {
+        value_ = *RedisHandler::getInstance().getRedis()->get(topic_->getTopicPath() + ":" + id_);
+        topic_->removeChangedParameter(id_);
+    }
     return deserialize(value_);
 }
 
 void CacheString::setValue(std::string value){
     value_ = value;
+    addValueToRedis_();
 }
 
 void CacheString::addValueToRedis_(){

@@ -21,6 +21,7 @@ public:
     Topic& operator=(const Topic& other) = delete;
     std::set<std::string> check_changed_parameters();
     void clear_changed_parameters();
+    void removeChangedParameter(std::string);
     std::string getTopicPath();
     void addCacheValue(AbstractCacheValue*);
     void removeCacheValue(std::string);
