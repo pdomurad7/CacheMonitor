@@ -7,140 +7,91 @@
 #include <chrono>
 #include <memory>
 #include <sstream>
-#include <cassert>
 #include <gtest/gtest.h>
 
-void test_creating_topic_and_value(){
-    std::cout << "Testing creating topic..." << std::endl;
+TEST(TestCacheValue, CheckCacheString)
+{
     TopicManager::getInstance().createTopic("test_topic");
-    Topic* topic = TopicManager::getInstance().getTopic("test_topic");
-    // Checking if topic was created in topic manager
-    if(topic == nullptr){
-        std::cout << "Checking if topic was created in topic manage failed" << std::endl;
-    } else {
-        std::cout << "." << std::endl;
-    }
+    auto cache_value = std::make_shared<CacheString>("test_id", "test_topic", "test_value");
+    ASSERT_EQ("test_value", cache_value->toString()) << "CacheString value is not correct";
 
-    // Checking if topic was created in redis
-    std::unique_ptr<AbstractCacheValue> cache_value = std::make_unique<CacheString>("test_id", "test_topic", "test_value");
-
-    if(RedisHandler::getInstance().getRedis()->exists("test_topic:test_id")){
-        std::cout << "." << std::endl;
-    } else {
-        std::cout << "Checking if topic with value was created in redis" << std::endl;
-    }
-
-    std::unique_ptr<AbstractCacheValue> cache_value2 = std::make_unique<CacheString>("test_id2", "test_topic");    
-    if(RedisHandler::getInstance().getRedis()->exists("test_topic:test_id2")){
-        std::cout << "." << std::endl;
-    } else {
-        std::cout << "Checking if topic with default value was created in redis failed" << std::endl;
-    }
-    // std::this_thread::sleep_for(std::chrono::seconds(10));
-    // Checking if topic wad deleted in topic manager
-    TopicManager::getInstance().removeTopic("test_topic");
-    if(TopicManager::getInstance().getTopic("test_topic") != nullptr){
-        std::cout << "Checking if topic wad deleted in topic manager failed" << std::endl;
-    } else {
-        std::cout << "." << std::endl;
-    }
-    // Checking if topic was deleted in redis
-    if(RedisHandler::getInstance().getRedis()->exists("test_topic")){
-        std::cout << "Checking if topic was deleted in redis failed" << std::endl;
-    } else {
-        std::cout << "." << std::endl;
-    }
+    cache_value->setValue("new_value");
+    ASSERT_EQ("new_value", cache_value->toString()) << "CacheString value after set is not correct";
 }
 
-void test_changing_topics(){
-    std::cout << "Testing changing topics..." << std::endl;
+TEST(TestCacheValue, CheckCacheInt)
+{
+    TopicManager::getInstance().createTopic("test_topic");
+    auto cache_value = std::make_shared<CacheInt>("test_id", "test_topic", 123);
+    ASSERT_EQ(123, cache_value->toInt()) << "CacheInt value is not correct";
+
+    cache_value->setValue(456);
+    ASSERT_EQ(456, cache_value->toInt()) << "CacheInt value after set is not correct";
+}
+
+TEST(TestCacheValue, CheckCacheFloat)
+{
+    TopicManager::getInstance().createTopic("test_topic");
+    auto cache_value = std::make_shared<CacheFloat>("test_id", "test_topic", 123.45f);
+    ASSERT_FLOAT_EQ(123.45f, cache_value->toFloat()) << "CacheFloat value is not correct";
+
+    cache_value->setValue(456.78f);
+    ASSERT_FLOAT_EQ(456.78f, cache_value->toFloat()) << "CacheFloat value after set is not correct";
+}
+
+TEST(TestTopic, CreatingAndDeletingTopic)
+{
+    TopicManager::getInstance().createTopic("test_topic");
+    Topic *topic = TopicManager::getInstance().getTopic("test_topic");
+    ASSERT_FALSE(topic == nullptr) << "Topic was not created in topic manager";
+
+    std::unique_ptr<AbstractCacheValue> cache_value = std::make_unique<CacheString>("test_id", "test_topic", "test_value");
+    ASSERT_TRUE(RedisHandler::getInstance().getRedis()->exists("test_topic:test_id")) << "Topic was not created in redis";
+
+    std::unique_ptr<AbstractCacheValue> cache_value2 = std::make_unique<CacheString>("test_id2", "test_topic");
+    ASSERT_TRUE(RedisHandler::getInstance().getRedis()->exists("test_topic:test_id2")) << "Topic with default value was not created in redis";
+
+    TopicManager::getInstance().removeTopic("test_topic");
+    ASSERT_FALSE(TopicManager::getInstance().getTopic("test_topic")) << "Topic was not deleted in topic manager";
+    ASSERT_FALSE(RedisHandler::getInstance().getRedis()->exists("test_topic")) << "Topic was not deleted in redis";
+}
+
+TEST(TestTopic, ChangingTopics)
+{
     TopicManager::getInstance().createTopic("first_topic");
     TopicManager::getInstance().createTopic("second_topic");
     std::shared_ptr<AbstractCacheValue> cache_value = std::make_shared<CacheString>("test_id", "first_topic", "test_value");
-    // Check if value is in first topic
-    if(RedisHandler::getInstance().getRedis()->exists("first_topic:test_id")){
-        std::cout << "." << std::endl;
-    } else {
-        std::cout << "Checking if value is in first topic failed" << std::endl;
-    }
+    ASSERT_TRUE(RedisHandler::getInstance().getRedis()->exists("first_topic:test_id")) << "Value is not in first topic";
+
     cache_value->changeTopic("second_topic");
-
-    // Check if value is in second topic set
-    if(TopicManager::getInstance().getTopic("second_topic")->exists("test_id")){
-        std::cout << "." << std::endl;
-    } else {
-        std::cout << "Checking if value is in second topic set failed" << std::endl;
-    }
-
-    // Check if value is not in first topic set
-    if(TopicManager::getInstance().getTopic("first_topic")->exists("test_id")){
-        std::cout << "Check if value is not in first topic set failed" << std::endl;
-    } else {
-        std::cout << "." << std::endl;
-    }
-
-    // Check if value is in redis second topic
-    if(RedisHandler::getInstance().getRedis()->exists("second_topic:test_id")){
-        std::cout << "." << std::endl;
-    } else {
-        std::cout << "Checking if value is in redis second topic failed" << std::endl;
-    }
-    // Check if value is not in first topic
-    if(RedisHandler::getInstance().getRedis()->exists("first_topic:test_id")){
-        std::cout << "Checking if value is not in first topic failed" << std::endl;
-    } else {
-        std::cout << "." << std::endl;
-    }
+    ASSERT_TRUE(TopicManager::getInstance().getTopic("second_topic")->exists("test_id")) << "Value is not in second topic set";
+    ASSERT_FALSE(TopicManager::getInstance().getTopic("first_topic")->exists("test_id")) << "Value is still in first topic set";
+    ASSERT_TRUE(RedisHandler::getInstance().getRedis()->exists("second_topic:test_id")) << "Value is not in redis second topic";
+    ASSERT_FALSE(RedisHandler::getInstance().getRedis()->exists("first_topic:test_id")) << "Value is still in redis first topic";
 }
 
-void test_check_changed_parameters(){
+TEST(TestRedisCallback, CheckChangedParameters)
+{
     TopicManager::getInstance().createTopic("changed_parameters_topic");
-    if(TopicManager::getInstance().getTopic("changed_parameters_topic")->check_changed_parameters().size() == 0){
-        std::cout << "." << std::endl;
-    } else {
-        std::cout << "Checking if changed parameters topic is empty failed" << std::endl;
-    }
+    ASSERT_EQ(0, TopicManager::getInstance().getTopic("changed_parameters_topic")->check_changed_parameters().size()) << "Changed parameters topic is not empty";
 
     std::shared_ptr<AbstractCacheValue> cache_value = std::make_shared<CacheString>("test_id", "changed_parameters_topic", "test_value");
-    std::this_thread::sleep_for(std::chrono::seconds(1));
-    if(TopicManager::getInstance().getTopic("changed_parameters_topic")->check_changed_parameters().size() == 1){
-        std::cout << "." << std::endl;
-    } else {
-        std::cout << "Checking if changed parameters topic has one parameter failed" << std::endl;
-    }
-    if (TopicManager::getInstance().getTopic("changed_parameters_topic")->check_changed_parameters().contains("test_id")){
-        std::cout << "." << std::endl;
-    } else {
-        std::cout << "Checking if changed parameters topic has correct parameter failed" << std::endl;
-    }
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    ASSERT_EQ(1, TopicManager::getInstance().getTopic("changed_parameters_topic")->check_changed_parameters().size()) << "Changed parameters topic does not have one parameter";
+    ASSERT_TRUE(TopicManager::getInstance().getTopic("changed_parameters_topic")->check_changed_parameters().contains("test_id")) << "Changed parameters topic does not have correct parameter";
 }
 
-// void test_get_changed_value_in_redis(){
-//     TopicManager::getInstance().createTopic("changed_parameters_topic");
-//     std::shared_ptr<AbstractCacheValue> cache_value = std::make_shared<CacheString>("test_id", "changed_parameters_topic", "test_value");
-//     if(TopicManager::)
-// }
-int add(int a, int b) {
-    return a + b;
+TEST(TestRedisCallback, CheckGetValue)
+{
+    TopicManager::getInstance().createTopic("get_value_topic");
+    std::shared_ptr<AbstractCacheValue> cache_value = std::make_shared<CacheString>("test_id", "get_value_topic", "test_value");
+    RedisHandler::getInstance().getRedis()->set("get_value_topic:test_id", "another_value");
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    ASSERT_EQ("another_value", TopicManager::getInstance().getTopic("get_value_topic")->getCacheValue("test_id")->toString()) << "Get value is not correct";
 }
 
-TEST(AddTest, HandlesPositiveInput) {
-    EXPECT_EQ(6, add(2, 4));
-}
-
-int main(){
-    // test_creating_topic_and_value();
-    // test_changing_topics();
-    // test_check_changed_parameters();
-    // Also to double check test check_changed_parameters behaviour you can use redis-commander/redis-cli and uncomment this code 
-    
-    // while(true){
-    //     std::cout<< "Changed parameters: " << std::endl;
-    //     for(auto x : TopicManager::getInstance().getTopic("second_topic")->check_changed_parameters()){
-    //         std::cout << x << std::endl;
-    //     }
-    //     std::this_thread::sleep_for(std::chrono::seconds(1));
-    // }
+int main()
+{
     ::testing::InitGoogleTest();
     return RUN_ALL_TESTS();
 }

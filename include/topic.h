@@ -8,12 +8,12 @@
 
 class AbstractCacheValue;
 
-class Topic{ // TODO: add mutable and schema, add also update topic (from state in redis)
+class Topic{ // TODO: update topic (from state in redis)
     std::set<std::string> changed_parameters_;
     std::string topic_path_;
     std::map <std::string, AbstractCacheValue*> cache_values_;
     Topic(std::string);
-    ~Topic()=default; // should delete all values from redis
+    ~Topic()=default;
     friend class TopicManager;
 
 public:

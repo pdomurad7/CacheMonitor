@@ -77,3 +77,60 @@ void CacheString::setValue(std::string value){
 void CacheString::addValueToRedis_(){
     RedisHandler::getInstance().getRedis()->set(topic_->getTopicPath() + ":" + id_, value_);
 }
+
+
+CacheInt::CacheInt(std::string id, std::string topic_path) : SimpleCacheValue(id, topic_path){
+    TopicManager::getInstance().getTopic(topic_path)->addCacheValue(this);
+    addValueToRedis_();
+}
+
+CacheInt::CacheInt(std::string id, std::string topic_path, int value) : SimpleCacheValue(id, topic_path){
+    value_ = value;
+    TopicManager::getInstance().getTopic(topic_path)->addCacheValue(this);
+    addValueToRedis_();
+}
+
+std::any CacheInt::getValue() {
+    if (TopicManager::getInstance().getTopic(topic_->getTopicPath())->exists(id_)) {
+        value_ = std::stoi(*RedisHandler::getInstance().getRedis()->get(topic_->getTopicPath() + ":" + id_));
+        topic_->removeChangedParameter(id_);
+    }
+    return deserialize(value_);
+}
+
+void CacheInt::setValue(int value){
+    value_ = value;
+    addValueToRedis_();
+}
+
+void CacheInt::addValueToRedis_(){
+    RedisHandler::getInstance().getRedis()->set(topic_->getTopicPath() + ":" + id_, std::to_string(value_));
+}
+
+CacheFloat::CacheFloat(std::string id, std::string topic_path) : SimpleCacheValue(id, topic_path){
+    TopicManager::getInstance().getTopic(topic_path)->addCacheValue(this);
+    addValueToRedis_();
+}
+
+CacheFloat::CacheFloat(std::string id, std::string topic_path, float value) : SimpleCacheValue(id, topic_path){
+    value_ = value;
+    TopicManager::getInstance().getTopic(topic_path)->addCacheValue(this);
+    addValueToRedis_();
+}
+
+std::any CacheFloat::getValue() {
+    if (TopicManager::getInstance().getTopic(topic_->getTopicPath())->exists(id_)) {
+        value_ = std::stof(*RedisHandler::getInstance().getRedis()->get(topic_->getTopicPath() + ":" + id_));
+        topic_->removeChangedParameter(id_);
+    }
+    return deserialize(value_);
+}
+
+void CacheFloat::setValue(float value){
+    value_ = value;
+    addValueToRedis_();
+}
+
+void CacheFloat::addValueToRedis_(){
+    RedisHandler::getInstance().getRedis()->set(topic_->getTopicPath() + ":" + id_, std::to_string(value_));
+}

@@ -42,6 +42,7 @@ public:
 class CacheString : public SimpleCacheValue{
     std::string value_;
     void addValueToRedis_() override;
+
 public:
     CacheString(std::string, std::string);
     CacheString(std::string, std::string, std::string);
@@ -50,4 +51,26 @@ public:
     void setValue(std::string);
 };
 
+class CacheInt : public SimpleCacheValue {
+    int value_;
+    void addValueToRedis_() override;
+
+public:
+    CacheInt(std::string, std::string);
+    CacheInt(std::string, std::string, int);
+    ~CacheInt() = default;
+    std::any getValue() override;
+    void setValue(int value);
+};
+class CacheFloat : public SimpleCacheValue {
+    float value_;
+    void addValueToRedis_() override;
+
+public:
+    CacheFloat(std::string, std::string);
+    CacheFloat(std::string, std::string, float);
+    ~CacheFloat() = default;
+    std::any getValue() override;
+    void setValue(float value);
+};
 #endif // CACHE_VALUE_H
