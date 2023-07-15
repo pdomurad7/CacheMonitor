@@ -52,3 +52,16 @@ sudo apt install npm
 sudo npm install redis-commander
 redis-commander             # runs redis-commander server on default host and port 127.0.0.1:8081
 ```
+
+To check result install gtest
+
+### Instalation of gtest
+```sh
+git clone https://github.com/google/googletest.git -b v1.13.0
+cd googletest        # Main directory of the cloned repository.
+mkdir build          # Create a directory to hold the build output.
+cd build
+cmake ..             # Generate native build scripts for GoogleTest.
+make
+sudo make install    # Install in /usr/local/ by default
+```
