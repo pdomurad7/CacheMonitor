@@ -12,16 +12,11 @@ std::string AbstractCacheValue::getId(){
     return id_;
 }
 
-void AbstractCacheValue::setId(std::string id){
-    id_ = id;
-}
-
 Topic* AbstractCacheValue::getTopic(){
     return topic_;
 }
 
 void AbstractCacheValue::changeTopic(std::string new_topic_path){
-    // TODO: handling changing on non existing topic
     std::string old_topic_path = topic_->getTopicPath();
     removeValueFromRedis_();
     topic_ = TopicManager::getInstance().getTopic(new_topic_path);
@@ -58,7 +53,6 @@ void AbstractCacheValue::removeValueFromRedis_(){
 }
 
 CacheString::CacheString(std::string id, std::string topic_path) : AbstractCacheValue(id, topic_path){
-    // TODO same as in another constructor
     value_ = "";
     TopicManager::getInstance().getTopic(topic_path)->addCacheValue(this);
     addValueToRedis_();
@@ -66,7 +60,6 @@ CacheString::CacheString(std::string id, std::string topic_path) : AbstractCache
 
 CacheString::CacheString(std::string id, std::string topic_path, std::string value) : AbstractCacheValue(id, topic_path){
     value_ = value;
-    // TODO check if topic exists
     TopicManager::getInstance().getTopic(topic_path)->addCacheValue(this);
     addValueToRedis_();
 }
