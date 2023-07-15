@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/cache_monitor.dir/src/main.cpp.o CMakeFiles/cache_monitor.dir/src/redis_handler.cpp.o -o cache_monitor  -Wl,-rpath,/usr/local/lib /usr/local/lib/libhiredis.so /usr/local/lib/libredis++.so 

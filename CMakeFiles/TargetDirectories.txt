@@ -1,3 +1,0 @@
-/root/CacheMonitor/CMakeFiles/cache_monitor.dir
-/root/CacheMonitor/CMakeFiles/edit_cache.dir
-/root/CacheMonitor/CMakeFiles/rebuild_cache.dir
