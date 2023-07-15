@@ -1,0 +1,135 @@
+\hypertarget{classCacheString}{}\doxysection{Cache\+String Class Reference}
+\label{classCacheString}\index{CacheString@{CacheString}}
+
+
+A cache value that contains a string.  
+
+
+
+
+{\ttfamily \#include $<$cache\+\_\+value.\+h$>$}
+
+
+
+Inheritance diagram for Cache\+String\+:
+% FIG 0
+
+
+Collaboration diagram for Cache\+String\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCacheString_a383ee6ba2c8e9a3e1cd4babc9241b60d}{Cache\+String}} (std\+::string id, std\+::string topic\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Construct a new {\ttfamily \mbox{\hyperlink{classCacheString}{Cache\+String}}} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classCacheString_a1e0b66025d81e9b41764dc348ae3e018}{Cache\+String}} (std\+::string id, std\+::string topic\+\_\+path, std\+::string value)
+\begin{DoxyCompactList}\small\item\em Construct a new {\ttfamily \mbox{\hyperlink{classCacheString}{Cache\+String}}} object with an initial value. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classCacheString_a4ed474e03add8614231e4e6d05afe5e2}{$\sim$\+Cache\+String}} ()=default
+\begin{DoxyCompactList}\small\item\em Destroy the {\ttfamily \mbox{\hyperlink{classCacheString}{Cache\+String}}} object. \end{DoxyCompactList}\item 
+std\+::any \mbox{\hyperlink{classCacheString_a676b679aec544ebbbb060c052214e630}{get\+Value}} () override
+\begin{DoxyCompactList}\small\item\em Get the string value of the cache. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCacheString_afff440327d376ba567daa34ad274d03d}{set\+Value}} (std\+::string value)
+\begin{DoxyCompactList}\small\item\em Set the string value of the cache. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+A cache value that contains a string. 
+
+This class inherits from the {\ttfamily \mbox{\hyperlink{classAbstractCacheValue}{Abstract\+Cache\+Value}}} base class and encapsulates a string value. It provides an implementation of the {\ttfamily get\+Value} method, which retrieves the string value as a {\ttfamily std\+::any} object, and the {\ttfamily set\+Value} method, which sets the string value. The {\ttfamily add\+Value\+To\+Redis\+\_\+} method, which is used to add the value to a Redis database, is also overridden in this class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classCacheString_a383ee6ba2c8e9a3e1cd4babc9241b60d}\label{classCacheString_a383ee6ba2c8e9a3e1cd4babc9241b60d}} 
+\index{CacheString@{CacheString}!CacheString@{CacheString}}
+\index{CacheString@{CacheString}!CacheString@{CacheString}}
+\doxysubsubsection{\texorpdfstring{CacheString()}{CacheString()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Cache\+String\+::\+Cache\+String (\begin{DoxyParamCaption}\item[{std\+::string}]{id,  }\item[{std\+::string}]{topic\+\_\+path }\end{DoxyParamCaption})}
+
+
+
+Construct a new {\ttfamily \mbox{\hyperlink{classCacheString}{Cache\+String}}} object. 
+
+This constructor initializes the {\ttfamily id\+\_\+} and {\ttfamily topic\+\_\+} members of the base class with the given parameters and setting default value which is empty string.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the cache value. \\
+\hline
+{\em topic\+\_\+path} & The topic path of the cache value. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCacheString_a1e0b66025d81e9b41764dc348ae3e018}\label{classCacheString_a1e0b66025d81e9b41764dc348ae3e018}} 
+\index{CacheString@{CacheString}!CacheString@{CacheString}}
+\index{CacheString@{CacheString}!CacheString@{CacheString}}
+\doxysubsubsection{\texorpdfstring{CacheString()}{CacheString()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Cache\+String\+::\+Cache\+String (\begin{DoxyParamCaption}\item[{std\+::string}]{id,  }\item[{std\+::string}]{topic\+\_\+path,  }\item[{std\+::string}]{value }\end{DoxyParamCaption})}
+
+
+
+Construct a new {\ttfamily \mbox{\hyperlink{classCacheString}{Cache\+String}}} object with an initial value. 
+
+This constructor initializes the {\ttfamily id\+\_\+} and {\ttfamily topic\+\_\+} members of the base class and the {\ttfamily value\+\_\+} member of this class with the given parameters.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the cache value. \\
+\hline
+{\em topic\+\_\+path} & The topic path of the cache value. \\
+\hline
+{\em value} & The initial string value. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCacheString_a4ed474e03add8614231e4e6d05afe5e2}\label{classCacheString_a4ed474e03add8614231e4e6d05afe5e2}} 
+\index{CacheString@{CacheString}!````~CacheString@{$\sim$CacheString}}
+\index{````~CacheString@{$\sim$CacheString}!CacheString@{CacheString}}
+\doxysubsubsection{\texorpdfstring{$\sim$CacheString()}{~CacheString()}}
+{\footnotesize\ttfamily Cache\+String\+::$\sim$\+Cache\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Destroy the {\ttfamily \mbox{\hyperlink{classCacheString}{Cache\+String}}} object. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCacheString_a676b679aec544ebbbb060c052214e630}\label{classCacheString_a676b679aec544ebbbb060c052214e630}} 
+\index{CacheString@{CacheString}!getValue@{getValue}}
+\index{getValue@{getValue}!CacheString@{CacheString}}
+\doxysubsubsection{\texorpdfstring{getValue()}{getValue()}}
+{\footnotesize\ttfamily std\+::any Cache\+String\+::get\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get the string value of the cache. 
+
+This method is overridden from the {\ttfamily \mbox{\hyperlink{classAbstractCacheValue}{Abstract\+Cache\+Value}}} base class.
+
+\begin{DoxyReturn}{Returns}
+The string value of the cache as a {\ttfamily std\+::any} object. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classAbstractCacheValue_a5d107685012c1c14a0007cafab8de884}{Abstract\+Cache\+Value}}.
+
+\mbox{\Hypertarget{classCacheString_afff440327d376ba567daa34ad274d03d}\label{classCacheString_afff440327d376ba567daa34ad274d03d}} 
+\index{CacheString@{CacheString}!setValue@{setValue}}
+\index{setValue@{setValue}!CacheString@{CacheString}}
+\doxysubsubsection{\texorpdfstring{setValue()}{setValue()}}
+{\footnotesize\ttfamily void Cache\+String\+::set\+Value (\begin{DoxyParamCaption}\item[{std\+::string}]{value }\end{DoxyParamCaption})}
+
+
+
+Set the string value of the cache. 
+
+This method sets the {\ttfamily value\+\_\+} member of this class to the given string value and updates the value in the Redis database.
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The new string value. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{cache__value_8h}{cache\+\_\+value.\+h}}\end{DoxyCompactItemize}

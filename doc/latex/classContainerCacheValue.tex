@@ -1,0 +1,156 @@
+\hypertarget{classContainerCacheValue}{}\doxysection{Container\+Cache\+Value Class Reference}
+\label{classContainerCacheValue}\index{ContainerCacheValue@{ContainerCacheValue}}
+
+
+An abstract cache value that contains a container.  
+
+
+
+
+{\ttfamily \#include $<$cache\+\_\+value.\+h$>$}
+
+
+
+Inheritance diagram for Container\+Cache\+Value\+:
+% FIG 0
+
+
+Collaboration diagram for Container\+Cache\+Value\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classContainerCacheValue_af0aa398cd55e24214659246f7de104c3}{Container\+Cache\+Value}} (std\+::string id, std\+::string topic\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Construct a new {\ttfamily \mbox{\hyperlink{classContainerCacheValue}{Container\+Cache\+Value}}} object. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classContainerCacheValue_adf0059ac30c33db26aed76f9d39341f6}{$\sim$\+Container\+Cache\+Value}} ()=default
+\begin{DoxyCompactList}\small\item\em Destroy the {\ttfamily \mbox{\hyperlink{classContainerCacheValue}{Container\+Cache\+Value}}} object. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classContainerCacheValue_aa5a84b1517a4cd5b5a4f36fa1aaa6a5a}{clear}} ()=0
+\begin{DoxyCompactList}\small\item\em Clear the container. \end{DoxyCompactList}\item 
+virtual int \mbox{\hyperlink{classContainerCacheValue_a34de75f67851b744870b8b55f2df9c36}{size}} ()=0
+\begin{DoxyCompactList}\small\item\em Get the size of the container. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classContainerCacheValue_a026c9c6c3e4c9bc826bbe5551d3ccf1f}{contains}} (std\+::string value)=0
+\begin{DoxyCompactList}\small\item\em Check if the container contains a certain value. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classContainerCacheValue_a838fe45c7124f0889b946db5dd71e73c}{empty}} ()=0
+\begin{DoxyCompactList}\small\item\em Check if the container is empty. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+An abstract cache value that contains a container. 
+
+This class inherits from the {\ttfamily \mbox{\hyperlink{classAbstractCacheValue}{Abstract\+Cache\+Value}}} base class and serves as the base class for cache values that contain containers such as lists, maps, or sets. It declares several pure virtual functions that must be implemented by the derived classes\+: {\ttfamily clear}, {\ttfamily size}, {\ttfamily contains}, and {\ttfamily empty}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classContainerCacheValue_af0aa398cd55e24214659246f7de104c3}\label{classContainerCacheValue_af0aa398cd55e24214659246f7de104c3}} 
+\index{ContainerCacheValue@{ContainerCacheValue}!ContainerCacheValue@{ContainerCacheValue}}
+\index{ContainerCacheValue@{ContainerCacheValue}!ContainerCacheValue@{ContainerCacheValue}}
+\doxysubsubsection{\texorpdfstring{ContainerCacheValue()}{ContainerCacheValue()}}
+{\footnotesize\ttfamily Container\+Cache\+Value\+::\+Container\+Cache\+Value (\begin{DoxyParamCaption}\item[{std\+::string}]{id,  }\item[{std\+::string}]{topic\+\_\+path }\end{DoxyParamCaption})}
+
+
+
+Construct a new {\ttfamily \mbox{\hyperlink{classContainerCacheValue}{Container\+Cache\+Value}}} object. 
+
+This constructor initializes the {\ttfamily id\+\_\+} and {\ttfamily topic\+\_\+} members of the base class with the given parameters.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the cache value. \\
+\hline
+{\em topic\+\_\+path} & The topic path of the cache value. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classContainerCacheValue_adf0059ac30c33db26aed76f9d39341f6}\label{classContainerCacheValue_adf0059ac30c33db26aed76f9d39341f6}} 
+\index{ContainerCacheValue@{ContainerCacheValue}!````~ContainerCacheValue@{$\sim$ContainerCacheValue}}
+\index{````~ContainerCacheValue@{$\sim$ContainerCacheValue}!ContainerCacheValue@{ContainerCacheValue}}
+\doxysubsubsection{\texorpdfstring{$\sim$ContainerCacheValue()}{~ContainerCacheValue()}}
+{\footnotesize\ttfamily virtual Container\+Cache\+Value\+::$\sim$\+Container\+Cache\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+Destroy the {\ttfamily \mbox{\hyperlink{classContainerCacheValue}{Container\+Cache\+Value}}} object. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classContainerCacheValue_aa5a84b1517a4cd5b5a4f36fa1aaa6a5a}\label{classContainerCacheValue_aa5a84b1517a4cd5b5a4f36fa1aaa6a5a}} 
+\index{ContainerCacheValue@{ContainerCacheValue}!clear@{clear}}
+\index{clear@{clear}!ContainerCacheValue@{ContainerCacheValue}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily virtual void Container\+Cache\+Value\+::clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Clear the container. 
+
+This method clears the container and deletes temporary value from Redis. This is a pure virtual function that must be implemented by the derived classes. 
+
+Implemented in \mbox{\hyperlink{classCacheSet_ac2dfcaa187e746cfac07546797c45eb4}{Cache\+Set}}, \mbox{\hyperlink{classCacheMap_a6bc8efc34e8c1d62ae6e3768fb391319}{Cache\+Map}}, and \mbox{\hyperlink{classCacheList_a78b8441b1b7be877fd06b6d661508d26}{Cache\+List}}.
+
+\mbox{\Hypertarget{classContainerCacheValue_a026c9c6c3e4c9bc826bbe5551d3ccf1f}\label{classContainerCacheValue_a026c9c6c3e4c9bc826bbe5551d3ccf1f}} 
+\index{ContainerCacheValue@{ContainerCacheValue}!contains@{contains}}
+\index{contains@{contains}!ContainerCacheValue@{ContainerCacheValue}}
+\doxysubsubsection{\texorpdfstring{contains()}{contains()}}
+{\footnotesize\ttfamily virtual bool Container\+Cache\+Value\+::contains (\begin{DoxyParamCaption}\item[{std\+::string}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Check if the container contains a certain value. 
+
+This is a pure virtual function that must be implemented by the derived classes. Checks if value in redis has changed. If so, we update and returns up to date result.
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The value to check for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the container contains the value, {\ttfamily false} otherwise. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classCacheList_aaf027db829e8ef648cf0cb98735f01ab}{Cache\+List}}, \mbox{\hyperlink{classCacheSet_ab584c178b041a96cf401c32fe6f0a6a5}{Cache\+Set}}, and \mbox{\hyperlink{classCacheMap_a5b789ad9ce21b0e9a18b9a95b020ec3e}{Cache\+Map}}.
+
+\mbox{\Hypertarget{classContainerCacheValue_a838fe45c7124f0889b946db5dd71e73c}\label{classContainerCacheValue_a838fe45c7124f0889b946db5dd71e73c}} 
+\index{ContainerCacheValue@{ContainerCacheValue}!empty@{empty}}
+\index{empty@{empty}!ContainerCacheValue@{ContainerCacheValue}}
+\doxysubsubsection{\texorpdfstring{empty()}{empty()}}
+{\footnotesize\ttfamily virtual bool Container\+Cache\+Value\+::empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Check if the container is empty. 
+
+This is a pure virtual function that must be implemented by the derived classes. Checks if value in redis has changed. If so, we update and returns up to date result.
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the container is empty, {\ttfamily false} otherwise. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classCacheSet_ab4ab22f98bf427d02ab0f8731812660c}{Cache\+Set}}, \mbox{\hyperlink{classCacheMap_ad736652fefd4c9ac0c59ec0b8e97f50a}{Cache\+Map}}, and \mbox{\hyperlink{classCacheList_afef94cabc3632fdfcbbbd162312a0516}{Cache\+List}}.
+
+\mbox{\Hypertarget{classContainerCacheValue_a34de75f67851b744870b8b55f2df9c36}\label{classContainerCacheValue_a34de75f67851b744870b8b55f2df9c36}} 
+\index{ContainerCacheValue@{ContainerCacheValue}!size@{size}}
+\index{size@{size}!ContainerCacheValue@{ContainerCacheValue}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily virtual int Container\+Cache\+Value\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Get the size of the container. 
+
+This is a pure virtual function that must be implemented by the derived classes. Checks if value in redis has changed. If so, we update and returns up to date result.
+
+\begin{DoxyReturn}{Returns}
+The size of the container. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classCacheSet_ab91947e79cd5dc6a7810a4e08095d48f}{Cache\+Set}}, \mbox{\hyperlink{classCacheMap_a82db99298b2df1a3cc87d873e3397de2}{Cache\+Map}}, and \mbox{\hyperlink{classCacheList_a2d89484b917039c7ae01f4f3345b54ae}{Cache\+List}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{cache__value_8h}{cache\+\_\+value.\+h}}\end{DoxyCompactItemize}

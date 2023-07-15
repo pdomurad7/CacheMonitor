@@ -1,0 +1,135 @@
+\hypertarget{classCacheInt}{}\doxysection{Cache\+Int Class Reference}
+\label{classCacheInt}\index{CacheInt@{CacheInt}}
+
+
+A cache value that contains an integer.  
+
+
+
+
+{\ttfamily \#include $<$cache\+\_\+value.\+h$>$}
+
+
+
+Inheritance diagram for Cache\+Int\+:
+% FIG 0
+
+
+Collaboration diagram for Cache\+Int\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCacheInt_a2fad45d48e14b122b2745b81a42088bf}{Cache\+Int}} (std\+::string id, std\+::string topic\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Construct a new {\ttfamily \mbox{\hyperlink{classCacheInt}{Cache\+Int}}} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classCacheInt_a0f5c881df0c882763289bc66b2a6af44}{Cache\+Int}} (std\+::string id, std\+::string topic\+\_\+path, int value)
+\begin{DoxyCompactList}\small\item\em Construct a new {\ttfamily \mbox{\hyperlink{classCacheInt}{Cache\+Int}}} object with an initial value. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classCacheInt_aa75fcb7b5e68dcf02c437a2e70848bcc}{$\sim$\+Cache\+Int}} ()=default
+\begin{DoxyCompactList}\small\item\em Destroy the {\ttfamily \mbox{\hyperlink{classCacheInt}{Cache\+Int}}} object. \end{DoxyCompactList}\item 
+std\+::any \mbox{\hyperlink{classCacheInt_a6f41eec2b54b2effc5a9476e0652ecf9}{get\+Value}} () override
+\begin{DoxyCompactList}\small\item\em Get the integer value of the cache. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCacheInt_a2f0ba9b0c744c0c33b32cc0c0fdd8209}{set\+Value}} (int value)
+\begin{DoxyCompactList}\small\item\em Set the integer value of the cache. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+A cache value that contains an integer. 
+
+This class inherits from the {\ttfamily \mbox{\hyperlink{classAbstractCacheValue}{Abstract\+Cache\+Value}}} base class and encapsulates an integer value. It provides an implementation of the {\ttfamily get\+Value} method, which retrieves the integer value as a {\ttfamily std\+::any} object, and the {\ttfamily set\+Value} method, which sets the integer value. The {\ttfamily add\+Value\+To\+Redis\+\_\+} method, which is used to add the value to a Redis database, is also overridden in this class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classCacheInt_a2fad45d48e14b122b2745b81a42088bf}\label{classCacheInt_a2fad45d48e14b122b2745b81a42088bf}} 
+\index{CacheInt@{CacheInt}!CacheInt@{CacheInt}}
+\index{CacheInt@{CacheInt}!CacheInt@{CacheInt}}
+\doxysubsubsection{\texorpdfstring{CacheInt()}{CacheInt()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Cache\+Int\+::\+Cache\+Int (\begin{DoxyParamCaption}\item[{std\+::string}]{id,  }\item[{std\+::string}]{topic\+\_\+path }\end{DoxyParamCaption})}
+
+
+
+Construct a new {\ttfamily \mbox{\hyperlink{classCacheInt}{Cache\+Int}}} object. 
+
+This constructor initializes the {\ttfamily id\+\_\+} and {\ttfamily topic\+\_\+} members of the base class with the given parameters and sets default value which is 0.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the cache value. \\
+\hline
+{\em topic\+\_\+path} & The topic path of the cache value. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCacheInt_a0f5c881df0c882763289bc66b2a6af44}\label{classCacheInt_a0f5c881df0c882763289bc66b2a6af44}} 
+\index{CacheInt@{CacheInt}!CacheInt@{CacheInt}}
+\index{CacheInt@{CacheInt}!CacheInt@{CacheInt}}
+\doxysubsubsection{\texorpdfstring{CacheInt()}{CacheInt()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Cache\+Int\+::\+Cache\+Int (\begin{DoxyParamCaption}\item[{std\+::string}]{id,  }\item[{std\+::string}]{topic\+\_\+path,  }\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Construct a new {\ttfamily \mbox{\hyperlink{classCacheInt}{Cache\+Int}}} object with an initial value. 
+
+This constructor initializes the {\ttfamily id\+\_\+} and {\ttfamily topic\+\_\+} members of the base class and the {\ttfamily value\+\_\+} member of this class with the given parameters.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the cache value. \\
+\hline
+{\em topic\+\_\+path} & The topic path of the cache value. \\
+\hline
+{\em value} & The initial integer value. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCacheInt_aa75fcb7b5e68dcf02c437a2e70848bcc}\label{classCacheInt_aa75fcb7b5e68dcf02c437a2e70848bcc}} 
+\index{CacheInt@{CacheInt}!````~CacheInt@{$\sim$CacheInt}}
+\index{````~CacheInt@{$\sim$CacheInt}!CacheInt@{CacheInt}}
+\doxysubsubsection{\texorpdfstring{$\sim$CacheInt()}{~CacheInt()}}
+{\footnotesize\ttfamily Cache\+Int\+::$\sim$\+Cache\+Int (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Destroy the {\ttfamily \mbox{\hyperlink{classCacheInt}{Cache\+Int}}} object. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCacheInt_a6f41eec2b54b2effc5a9476e0652ecf9}\label{classCacheInt_a6f41eec2b54b2effc5a9476e0652ecf9}} 
+\index{CacheInt@{CacheInt}!getValue@{getValue}}
+\index{getValue@{getValue}!CacheInt@{CacheInt}}
+\doxysubsubsection{\texorpdfstring{getValue()}{getValue()}}
+{\footnotesize\ttfamily std\+::any Cache\+Int\+::get\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get the integer value of the cache. 
+
+This method is overridden from the {\ttfamily \mbox{\hyperlink{classAbstractCacheValue}{Abstract\+Cache\+Value}}} base class.
+
+\begin{DoxyReturn}{Returns}
+The integer value of the cache as a {\ttfamily std\+::any} object. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classAbstractCacheValue_a5d107685012c1c14a0007cafab8de884}{Abstract\+Cache\+Value}}.
+
+\mbox{\Hypertarget{classCacheInt_a2f0ba9b0c744c0c33b32cc0c0fdd8209}\label{classCacheInt_a2f0ba9b0c744c0c33b32cc0c0fdd8209}} 
+\index{CacheInt@{CacheInt}!setValue@{setValue}}
+\index{setValue@{setValue}!CacheInt@{CacheInt}}
+\doxysubsubsection{\texorpdfstring{setValue()}{setValue()}}
+{\footnotesize\ttfamily void Cache\+Int\+::set\+Value (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Set the integer value of the cache. 
+
+This method sets the {\ttfamily value\+\_\+} member of this class to the given integer value and updates the value in the Redis.
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The new integer value. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{cache__value_8h}{cache\+\_\+value.\+h}}\end{DoxyCompactItemize}

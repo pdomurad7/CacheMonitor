@@ -1,0 +1,270 @@
+\hypertarget{classCacheList}{}\doxysection{Cache\+List Class Reference}
+\label{classCacheList}\index{CacheList@{CacheList}}
+
+
+A cache value that contains a list of strings.  
+
+
+
+
+{\ttfamily \#include $<$cache\+\_\+value.\+h$>$}
+
+
+
+Inheritance diagram for Cache\+List\+:
+% FIG 0
+
+
+Collaboration diagram for Cache\+List\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCacheList_ae4aaffe03194fd85d58399c8087d19e7}{Cache\+List}} (std\+::string id, std\+::string topic\+\_\+path, std\+::list$<$ std\+::string $>$ value)
+\begin{DoxyCompactList}\small\item\em Construct a new {\ttfamily \mbox{\hyperlink{classCacheList}{Cache\+List}}} object with an initial list. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classCacheList_a23736af1e3947b8dc23db9e50b0a6747}{$\sim$\+Cache\+List}} ()=default
+\begin{DoxyCompactList}\small\item\em Destroy the {\ttfamily \mbox{\hyperlink{classCacheList}{Cache\+List}}} object. \end{DoxyCompactList}\item 
+std\+::any \mbox{\hyperlink{classCacheList_aaa6573c529de2ed0b77297ec92cbf927}{get\+Value}} () override
+\begin{DoxyCompactList}\small\item\em Get the list of strings from the cache. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCacheList_ad4b07da6c6f12187250691ff65901c93}{set\+Value}} (std\+::list$<$ std\+::string $>$ value)
+\begin{DoxyCompactList}\small\item\em Set the list of strings in the cache. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCacheList_a1600d0e02828230364b5b967db364359}{rpush}} (std\+::string value)
+\begin{DoxyCompactList}\small\item\em Add a string to the end of the list. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCacheList_ae41e52fb3b15e7162bdea78b60c33c6e}{lpush}} (std\+::string value)
+\begin{DoxyCompactList}\small\item\em Add a string to the front of the list. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classCacheList_ad4b67d4e57d480f1f277a3e6b7be61e6}{rpop}} ()
+\begin{DoxyCompactList}\small\item\em Remove and return a string from the end of the list. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classCacheList_abb908c6b69068d8e1c669a6b2e60a2e8}{lpop}} ()
+\begin{DoxyCompactList}\small\item\em Remove and return a string from the front of the list. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classCacheList_a2d89484b917039c7ae01f4f3345b54ae}{size}} () override
+\begin{DoxyCompactList}\small\item\em Get the size of the list. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classCacheList_aaf027db829e8ef648cf0cb98735f01ab}{contains}} (std\+::string value) override
+\begin{DoxyCompactList}\small\item\em Check if the list contains a certain string. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classCacheList_afef94cabc3632fdfcbbbd162312a0516}{empty}} () override
+\begin{DoxyCompactList}\small\item\em Check if the list is empty. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCacheList_a78b8441b1b7be877fd06b6d661508d26}{clear}} () override
+\begin{DoxyCompactList}\small\item\em Clear the list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+A cache value that contains a list of strings. 
+
+This class inherits from the {\ttfamily \mbox{\hyperlink{classContainerCacheValue}{Container\+Cache\+Value}}} base class and encapsulates a list of strings. It provides an implementation of the {\ttfamily get\+Value}, {\ttfamily set\+Value}, {\ttfamily size}, {\ttfamily contains}, {\ttfamily empty}, and {\ttfamily clear} methods. The {\ttfamily add\+Value\+To\+Redis\+\_\+} method, which is used to add the list to a Redis database, is also overridden in this class. Additional methods for manipulating the list ({\ttfamily rpush}, {\ttfamily lpush}, {\ttfamily rpop}, {\ttfamily lpop}) are also provided. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classCacheList_ae4aaffe03194fd85d58399c8087d19e7}\label{classCacheList_ae4aaffe03194fd85d58399c8087d19e7}} 
+\index{CacheList@{CacheList}!CacheList@{CacheList}}
+\index{CacheList@{CacheList}!CacheList@{CacheList}}
+\doxysubsubsection{\texorpdfstring{CacheList()}{CacheList()}}
+{\footnotesize\ttfamily Cache\+List\+::\+Cache\+List (\begin{DoxyParamCaption}\item[{std\+::string}]{id,  }\item[{std\+::string}]{topic\+\_\+path,  }\item[{std\+::list$<$ std\+::string $>$}]{value }\end{DoxyParamCaption})}
+
+
+
+Construct a new {\ttfamily \mbox{\hyperlink{classCacheList}{Cache\+List}}} object with an initial list. 
+
+This constructor initializes the {\ttfamily id\+\_\+} and {\ttfamily topic\+\_\+} members of the base class and the {\ttfamily value\+\_\+} member of this class with the given parameters.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the cache value. \\
+\hline
+{\em topic\+\_\+path} & The topic path of the cache value. \\
+\hline
+{\em value} & The initial list of strings. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCacheList_a23736af1e3947b8dc23db9e50b0a6747}\label{classCacheList_a23736af1e3947b8dc23db9e50b0a6747}} 
+\index{CacheList@{CacheList}!````~CacheList@{$\sim$CacheList}}
+\index{````~CacheList@{$\sim$CacheList}!CacheList@{CacheList}}
+\doxysubsubsection{\texorpdfstring{$\sim$CacheList()}{~CacheList()}}
+{\footnotesize\ttfamily Cache\+List\+::$\sim$\+Cache\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Destroy the {\ttfamily \mbox{\hyperlink{classCacheList}{Cache\+List}}} object. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCacheList_a78b8441b1b7be877fd06b6d661508d26}\label{classCacheList_a78b8441b1b7be877fd06b6d661508d26}} 
+\index{CacheList@{CacheList}!clear@{clear}}
+\index{clear@{clear}!CacheList@{CacheList}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily void Cache\+List\+::clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Clear the list. 
+
+This method is overridden from the {\ttfamily \mbox{\hyperlink{classContainerCacheValue}{Container\+Cache\+Value}}} base class. It clears the {\ttfamily value\+\_\+} list and removes the list from the Redis. 
+
+Implements \mbox{\hyperlink{classContainerCacheValue_aa5a84b1517a4cd5b5a4f36fa1aaa6a5a}{Container\+Cache\+Value}}.
+
+\mbox{\Hypertarget{classCacheList_aaf027db829e8ef648cf0cb98735f01ab}\label{classCacheList_aaf027db829e8ef648cf0cb98735f01ab}} 
+\index{CacheList@{CacheList}!contains@{contains}}
+\index{contains@{contains}!CacheList@{CacheList}}
+\doxysubsubsection{\texorpdfstring{contains()}{contains()}}
+{\footnotesize\ttfamily bool Cache\+List\+::contains (\begin{DoxyParamCaption}\item[{std\+::string}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Check if the list contains a certain string. 
+
+This method is overridden from the {\ttfamily \mbox{\hyperlink{classContainerCacheValue}{Container\+Cache\+Value}}} base class. Checks if value in redis has changed. If so, we update and returns up to date result.
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The string to check for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the list contains the string, {\ttfamily false} otherwise. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classContainerCacheValue_a026c9c6c3e4c9bc826bbe5551d3ccf1f}{Container\+Cache\+Value}}.
+
+\mbox{\Hypertarget{classCacheList_afef94cabc3632fdfcbbbd162312a0516}\label{classCacheList_afef94cabc3632fdfcbbbd162312a0516}} 
+\index{CacheList@{CacheList}!empty@{empty}}
+\index{empty@{empty}!CacheList@{CacheList}}
+\doxysubsubsection{\texorpdfstring{empty()}{empty()}}
+{\footnotesize\ttfamily bool Cache\+List\+::empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Check if the list is empty. 
+
+This method is overridden from the {\ttfamily \mbox{\hyperlink{classContainerCacheValue}{Container\+Cache\+Value}}} base class. Checks if value in redis has changed. If so, we update and returns up to date result.
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the list is empty, {\ttfamily false} otherwise. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classContainerCacheValue_a838fe45c7124f0889b946db5dd71e73c}{Container\+Cache\+Value}}.
+
+\mbox{\Hypertarget{classCacheList_aaa6573c529de2ed0b77297ec92cbf927}\label{classCacheList_aaa6573c529de2ed0b77297ec92cbf927}} 
+\index{CacheList@{CacheList}!getValue@{getValue}}
+\index{getValue@{getValue}!CacheList@{CacheList}}
+\doxysubsubsection{\texorpdfstring{getValue()}{getValue()}}
+{\footnotesize\ttfamily std\+::any Cache\+List\+::get\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get the list of strings from the cache. 
+
+This method is overridden from the {\ttfamily \mbox{\hyperlink{classContainerCacheValue}{Container\+Cache\+Value}}} base class. Checks if value in redis has changed. If so, we update and returns new value.
+
+\begin{DoxyReturn}{Returns}
+The list of strings from the cache as a {\ttfamily std\+::any} object. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classAbstractCacheValue_a5d107685012c1c14a0007cafab8de884}{Abstract\+Cache\+Value}}.
+
+\mbox{\Hypertarget{classCacheList_abb908c6b69068d8e1c669a6b2e60a2e8}\label{classCacheList_abb908c6b69068d8e1c669a6b2e60a2e8}} 
+\index{CacheList@{CacheList}!lpop@{lpop}}
+\index{lpop@{lpop}!CacheList@{CacheList}}
+\doxysubsubsection{\texorpdfstring{lpop()}{lpop()}}
+{\footnotesize\ttfamily std\+::string Cache\+List\+::lpop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Remove and return a string from the front of the list. 
+
+This method removes a string from the front of the {\ttfamily value\+\_\+} list and returns it. Updates value in Redis.
+
+\begin{DoxyReturn}{Returns}
+The removed string. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCacheList_ae41e52fb3b15e7162bdea78b60c33c6e}\label{classCacheList_ae41e52fb3b15e7162bdea78b60c33c6e}} 
+\index{CacheList@{CacheList}!lpush@{lpush}}
+\index{lpush@{lpush}!CacheList@{CacheList}}
+\doxysubsubsection{\texorpdfstring{lpush()}{lpush()}}
+{\footnotesize\ttfamily void Cache\+List\+::lpush (\begin{DoxyParamCaption}\item[{std\+::string}]{value }\end{DoxyParamCaption})}
+
+
+
+Add a string to the front of the list. 
+
+This method adds a string to the front of the {\ttfamily value\+\_\+} list. Updates value in Redis.
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The string to add. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCacheList_ad4b67d4e57d480f1f277a3e6b7be61e6}\label{classCacheList_ad4b67d4e57d480f1f277a3e6b7be61e6}} 
+\index{CacheList@{CacheList}!rpop@{rpop}}
+\index{rpop@{rpop}!CacheList@{CacheList}}
+\doxysubsubsection{\texorpdfstring{rpop()}{rpop()}}
+{\footnotesize\ttfamily std\+::string Cache\+List\+::rpop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Remove and return a string from the end of the list. 
+
+This method removes a string from the end of the {\ttfamily value\+\_\+} list and returns it. Updates value in Redis.
+
+\begin{DoxyReturn}{Returns}
+The removed string. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCacheList_a1600d0e02828230364b5b967db364359}\label{classCacheList_a1600d0e02828230364b5b967db364359}} 
+\index{CacheList@{CacheList}!rpush@{rpush}}
+\index{rpush@{rpush}!CacheList@{CacheList}}
+\doxysubsubsection{\texorpdfstring{rpush()}{rpush()}}
+{\footnotesize\ttfamily void Cache\+List\+::rpush (\begin{DoxyParamCaption}\item[{std\+::string}]{value }\end{DoxyParamCaption})}
+
+
+
+Add a string to the end of the list. 
+
+This method adds a string to the end of the {\ttfamily value\+\_\+} list. Updates value in Redis.
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The string to add. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCacheList_ad4b07da6c6f12187250691ff65901c93}\label{classCacheList_ad4b07da6c6f12187250691ff65901c93}} 
+\index{CacheList@{CacheList}!setValue@{setValue}}
+\index{setValue@{setValue}!CacheList@{CacheList}}
+\doxysubsubsection{\texorpdfstring{setValue()}{setValue()}}
+{\footnotesize\ttfamily void Cache\+List\+::set\+Value (\begin{DoxyParamCaption}\item[{std\+::list$<$ std\+::string $>$}]{value }\end{DoxyParamCaption})}
+
+
+
+Set the list of strings in the cache. 
+
+This method sets the {\ttfamily value\+\_\+} member of this class to the given list of strings and updates the list in the Redis.
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The new list of strings. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCacheList_a2d89484b917039c7ae01f4f3345b54ae}\label{classCacheList_a2d89484b917039c7ae01f4f3345b54ae}} 
+\index{CacheList@{CacheList}!size@{size}}
+\index{size@{size}!CacheList@{CacheList}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily int Cache\+List\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get the size of the list. 
+
+This method is overridden from the {\ttfamily \mbox{\hyperlink{classContainerCacheValue}{Container\+Cache\+Value}}} base class. Checks if value in redis has changed. If so, we update and returns up to date result.
+
+\begin{DoxyReturn}{Returns}
+The size of the list. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classContainerCacheValue_a34de75f67851b744870b8b55f2df9c36}{Container\+Cache\+Value}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{cache__value_8h}{cache\+\_\+value.\+h}}\end{DoxyCompactItemize}

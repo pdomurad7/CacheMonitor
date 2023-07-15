@@ -1,0 +1,282 @@
+\hypertarget{classAbstractCacheValue}{}\doxysection{Abstract\+Cache\+Value Class Reference}
+\label{classAbstractCacheValue}\index{AbstractCacheValue@{AbstractCacheValue}}
+
+
+Abstract base class for cache values.  
+
+
+
+
+{\ttfamily \#include $<$cache\+\_\+value.\+h$>$}
+
+
+
+Inheritance diagram for Abstract\+Cache\+Value\+:
+% FIG 0
+
+
+Collaboration diagram for Abstract\+Cache\+Value\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classAbstractCacheValue_acbdf4f670472b9b1778cb992411a99b8}{Abstract\+Cache\+Value}} (std\+::string id, std\+::string topic)
+\begin{DoxyCompactList}\small\item\em Construct a new Abstract Cache Value object. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classAbstractCacheValue_a6da1a71ff8c78cb903fa8dd518062c55}{$\sim$\+Abstract\+Cache\+Value}} ()=default
+\begin{DoxyCompactList}\small\item\em Destroy the Abstract Cache Value object. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classAbstractCacheValue_af714d4965cc158862be01bd1b7ae7aec}{get\+Id}} ()
+\begin{DoxyCompactList}\small\item\em Get the ID of the cache value. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classTopic}{Topic}} $\ast$ \mbox{\hyperlink{classAbstractCacheValue_ae31d44e06765a95e68e91aa7dc75c784}{get\+Topic}} ()
+\begin{DoxyCompactList}\small\item\em Get the \mbox{\hyperlink{classTopic}{Topic}} object associated with the cache value. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classAbstractCacheValue_ae70d19bfdc6a4d5efe8641e628fcd20c}{change\+Topic}} (std\+::string topic)
+\begin{DoxyCompactList}\small\item\em Change the topic of the cache value. Which also means changin value path in redis. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classAbstractCacheValue_af1e45ee62e5dc6b8cf868657df976a8c}{to\+String}} ()
+\begin{DoxyCompactList}\small\item\em Convert the std\+::any value of the cache to a string. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classAbstractCacheValue_afc67db52684477266bb6a03d25706f08}{to\+Int}} ()
+\begin{DoxyCompactList}\small\item\em Convert the std\+::any value of the cache to an integer. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classAbstractCacheValue_ab5d306f4b1b51fb06485d42b1a6b291e}{to\+Float}} ()
+\begin{DoxyCompactList}\small\item\em Convert the std\+::any value of the cache to a float. \end{DoxyCompactList}\item 
+std\+::list$<$ std\+::string $>$ \mbox{\hyperlink{classAbstractCacheValue_a8f3dd9d30f509c57462154d587af10b6}{to\+List}} ()
+\begin{DoxyCompactList}\small\item\em Convert the std\+::any value of the cache to a list of strings. \end{DoxyCompactList}\item 
+std\+::map$<$ std\+::string, std\+::string $>$ \mbox{\hyperlink{classAbstractCacheValue_ad39f8aac91a235a9c5f3693615f7a21d}{to\+Map}} ()
+\begin{DoxyCompactList}\small\item\em Convert the std\+::any value of the cache to a map from strings to strings. \end{DoxyCompactList}\item 
+std\+::set$<$ std\+::string $>$ \mbox{\hyperlink{classAbstractCacheValue_a58096d4f6b0cdafec311630c95207cd0}{to\+Set}} ()
+\begin{DoxyCompactList}\small\item\em Convert the std\+::any value of the cache to a set of strings. \end{DoxyCompactList}\item 
+virtual std\+::any \mbox{\hyperlink{classAbstractCacheValue_a5d107685012c1c14a0007cafab8de884}{get\+Value}} ()=0
+\begin{DoxyCompactList}\small\item\em Get the value of the cache. To be implemented by derived classes. Implementation depends on retrieving value from Redis and converting to propar value type. Every time this method is called, we are checking if value in redis has changed. If so, we update and returns new value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classAbstractCacheValue_aea454a22c6514957081e485be3866534}{remove\+Value\+From\+Redis\+\_\+}} ()
+\begin{DoxyCompactList}\small\item\em Remove the value from Redis. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classAbstractCacheValue_aa495d5ec63ad91f4c5280643f793c7b8}{add\+Value\+To\+Redis\+\_\+}} ()=0
+\begin{DoxyCompactList}\small\item\em Abstract method to add the value to Redis, to be implemented by derived classes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \mbox{\hyperlink{classAbstractCacheValue_ab605880bad5c8733abe70fdf8a4c35ba}{id\+\_\+}}
+\begin{DoxyCompactList}\small\item\em The ID of the cache value. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classTopic}{Topic}} $\ast$ \mbox{\hyperlink{classAbstractCacheValue_aede70b688a9734f4ec7624602c5300c8}{topic\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Pointer to the \mbox{\hyperlink{classTopic}{Topic}} associated with this cache value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstract base class for cache values. 
+
+Base cache value class, which provides common interface for manipulating cache values, like getting their values, adding values to redis or changing topic. This functionalities are needed in class like \mbox{\hyperlink{classTopic}{Topic}} or \mbox{\hyperlink{classTopicManager}{Topic\+Manager}}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classAbstractCacheValue_acbdf4f670472b9b1778cb992411a99b8}\label{classAbstractCacheValue_acbdf4f670472b9b1778cb992411a99b8}} 
+\index{AbstractCacheValue@{AbstractCacheValue}!AbstractCacheValue@{AbstractCacheValue}}
+\index{AbstractCacheValue@{AbstractCacheValue}!AbstractCacheValue@{AbstractCacheValue}}
+\doxysubsubsection{\texorpdfstring{AbstractCacheValue()}{AbstractCacheValue()}}
+{\footnotesize\ttfamily Abstract\+Cache\+Value\+::\+Abstract\+Cache\+Value (\begin{DoxyParamCaption}\item[{std\+::string}]{id,  }\item[{std\+::string}]{topic }\end{DoxyParamCaption})}
+
+
+
+Construct a new Abstract Cache Value object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the cache value. \\
+\hline
+{\em topic} & The topic of the cache value. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classAbstractCacheValue_a6da1a71ff8c78cb903fa8dd518062c55}\label{classAbstractCacheValue_a6da1a71ff8c78cb903fa8dd518062c55}} 
+\index{AbstractCacheValue@{AbstractCacheValue}!````~AbstractCacheValue@{$\sim$AbstractCacheValue}}
+\index{````~AbstractCacheValue@{$\sim$AbstractCacheValue}!AbstractCacheValue@{AbstractCacheValue}}
+\doxysubsubsection{\texorpdfstring{$\sim$AbstractCacheValue()}{~AbstractCacheValue()}}
+{\footnotesize\ttfamily virtual Abstract\+Cache\+Value\+::$\sim$\+Abstract\+Cache\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+Destroy the Abstract Cache Value object. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classAbstractCacheValue_aa495d5ec63ad91f4c5280643f793c7b8}\label{classAbstractCacheValue_aa495d5ec63ad91f4c5280643f793c7b8}} 
+\index{AbstractCacheValue@{AbstractCacheValue}!addValueToRedis\_@{addValueToRedis\_}}
+\index{addValueToRedis\_@{addValueToRedis\_}!AbstractCacheValue@{AbstractCacheValue}}
+\doxysubsubsection{\texorpdfstring{addValueToRedis\_()}{addValueToRedis\_()}}
+{\footnotesize\ttfamily virtual void Abstract\+Cache\+Value\+::add\+Value\+To\+Redis\+\_\+ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+
+
+Abstract method to add the value to Redis, to be implemented by derived classes. 
+
+\mbox{\Hypertarget{classAbstractCacheValue_ae70d19bfdc6a4d5efe8641e628fcd20c}\label{classAbstractCacheValue_ae70d19bfdc6a4d5efe8641e628fcd20c}} 
+\index{AbstractCacheValue@{AbstractCacheValue}!changeTopic@{changeTopic}}
+\index{changeTopic@{changeTopic}!AbstractCacheValue@{AbstractCacheValue}}
+\doxysubsubsection{\texorpdfstring{changeTopic()}{changeTopic()}}
+{\footnotesize\ttfamily void Abstract\+Cache\+Value\+::change\+Topic (\begin{DoxyParamCaption}\item[{std\+::string}]{topic }\end{DoxyParamCaption})}
+
+
+
+Change the topic of the cache value. Which also means changin value path in redis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em topic} & The new topic. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classAbstractCacheValue_af714d4965cc158862be01bd1b7ae7aec}\label{classAbstractCacheValue_af714d4965cc158862be01bd1b7ae7aec}} 
+\index{AbstractCacheValue@{AbstractCacheValue}!getId@{getId}}
+\index{getId@{getId}!AbstractCacheValue@{AbstractCacheValue}}
+\doxysubsubsection{\texorpdfstring{getId()}{getId()}}
+{\footnotesize\ttfamily std\+::string Abstract\+Cache\+Value\+::get\+Id (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the ID of the cache value. 
+
+\begin{DoxyReturn}{Returns}
+The ID of the cache value as a string. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classAbstractCacheValue_ae31d44e06765a95e68e91aa7dc75c784}\label{classAbstractCacheValue_ae31d44e06765a95e68e91aa7dc75c784}} 
+\index{AbstractCacheValue@{AbstractCacheValue}!getTopic@{getTopic}}
+\index{getTopic@{getTopic}!AbstractCacheValue@{AbstractCacheValue}}
+\doxysubsubsection{\texorpdfstring{getTopic()}{getTopic()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classTopic}{Topic}}$\ast$ Abstract\+Cache\+Value\+::get\+Topic (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the \mbox{\hyperlink{classTopic}{Topic}} object associated with the cache value. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to the \mbox{\hyperlink{classTopic}{Topic}} object. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classAbstractCacheValue_a5d107685012c1c14a0007cafab8de884}\label{classAbstractCacheValue_a5d107685012c1c14a0007cafab8de884}} 
+\index{AbstractCacheValue@{AbstractCacheValue}!getValue@{getValue}}
+\index{getValue@{getValue}!AbstractCacheValue@{AbstractCacheValue}}
+\doxysubsubsection{\texorpdfstring{getValue()}{getValue()}}
+{\footnotesize\ttfamily virtual std\+::any Abstract\+Cache\+Value\+::get\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Get the value of the cache. To be implemented by derived classes. Implementation depends on retrieving value from Redis and converting to propar value type. Every time this method is called, we are checking if value in redis has changed. If so, we update and returns new value. 
+
+\begin{DoxyReturn}{Returns}
+The value of the cache as a std\+::any object. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classCacheSet_a49fd6f361da02c23d1dd43f26d6be467}{Cache\+Set}}, \mbox{\hyperlink{classCacheMap_a9c0a3904768484146fdf189bc483911f}{Cache\+Map}}, \mbox{\hyperlink{classCacheList_aaa6573c529de2ed0b77297ec92cbf927}{Cache\+List}}, \mbox{\hyperlink{classCacheFloat_ac7b59e1e66d596a364d6bb0160302359}{Cache\+Float}}, \mbox{\hyperlink{classCacheInt_a6f41eec2b54b2effc5a9476e0652ecf9}{Cache\+Int}}, and \mbox{\hyperlink{classCacheString_a676b679aec544ebbbb060c052214e630}{Cache\+String}}.
+
+\mbox{\Hypertarget{classAbstractCacheValue_aea454a22c6514957081e485be3866534}\label{classAbstractCacheValue_aea454a22c6514957081e485be3866534}} 
+\index{AbstractCacheValue@{AbstractCacheValue}!removeValueFromRedis\_@{removeValueFromRedis\_}}
+\index{removeValueFromRedis\_@{removeValueFromRedis\_}!AbstractCacheValue@{AbstractCacheValue}}
+\doxysubsubsection{\texorpdfstring{removeValueFromRedis\_()}{removeValueFromRedis\_()}}
+{\footnotesize\ttfamily void Abstract\+Cache\+Value\+::remove\+Value\+From\+Redis\+\_\+ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Remove the value from Redis. 
+
+\mbox{\Hypertarget{classAbstractCacheValue_ab5d306f4b1b51fb06485d42b1a6b291e}\label{classAbstractCacheValue_ab5d306f4b1b51fb06485d42b1a6b291e}} 
+\index{AbstractCacheValue@{AbstractCacheValue}!toFloat@{toFloat}}
+\index{toFloat@{toFloat}!AbstractCacheValue@{AbstractCacheValue}}
+\doxysubsubsection{\texorpdfstring{toFloat()}{toFloat()}}
+{\footnotesize\ttfamily float Abstract\+Cache\+Value\+::to\+Float (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Convert the std\+::any value of the cache to a float. 
+
+\begin{DoxyReturn}{Returns}
+The cache value as a float. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classAbstractCacheValue_afc67db52684477266bb6a03d25706f08}\label{classAbstractCacheValue_afc67db52684477266bb6a03d25706f08}} 
+\index{AbstractCacheValue@{AbstractCacheValue}!toInt@{toInt}}
+\index{toInt@{toInt}!AbstractCacheValue@{AbstractCacheValue}}
+\doxysubsubsection{\texorpdfstring{toInt()}{toInt()}}
+{\footnotesize\ttfamily int Abstract\+Cache\+Value\+::to\+Int (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Convert the std\+::any value of the cache to an integer. 
+
+\begin{DoxyReturn}{Returns}
+The cache value as an integer. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classAbstractCacheValue_a8f3dd9d30f509c57462154d587af10b6}\label{classAbstractCacheValue_a8f3dd9d30f509c57462154d587af10b6}} 
+\index{AbstractCacheValue@{AbstractCacheValue}!toList@{toList}}
+\index{toList@{toList}!AbstractCacheValue@{AbstractCacheValue}}
+\doxysubsubsection{\texorpdfstring{toList()}{toList()}}
+{\footnotesize\ttfamily std\+::list$<$std\+::string$>$ Abstract\+Cache\+Value\+::to\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Convert the std\+::any value of the cache to a list of strings. 
+
+\begin{DoxyReturn}{Returns}
+The cache value as a list of strings. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classAbstractCacheValue_ad39f8aac91a235a9c5f3693615f7a21d}\label{classAbstractCacheValue_ad39f8aac91a235a9c5f3693615f7a21d}} 
+\index{AbstractCacheValue@{AbstractCacheValue}!toMap@{toMap}}
+\index{toMap@{toMap}!AbstractCacheValue@{AbstractCacheValue}}
+\doxysubsubsection{\texorpdfstring{toMap()}{toMap()}}
+{\footnotesize\ttfamily std\+::map$<$std\+::string, std\+::string$>$ Abstract\+Cache\+Value\+::to\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Convert the std\+::any value of the cache to a map from strings to strings. 
+
+\begin{DoxyReturn}{Returns}
+The cache value as a map from strings to strings. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classAbstractCacheValue_a58096d4f6b0cdafec311630c95207cd0}\label{classAbstractCacheValue_a58096d4f6b0cdafec311630c95207cd0}} 
+\index{AbstractCacheValue@{AbstractCacheValue}!toSet@{toSet}}
+\index{toSet@{toSet}!AbstractCacheValue@{AbstractCacheValue}}
+\doxysubsubsection{\texorpdfstring{toSet()}{toSet()}}
+{\footnotesize\ttfamily std\+::set$<$std\+::string$>$ Abstract\+Cache\+Value\+::to\+Set (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Convert the std\+::any value of the cache to a set of strings. 
+
+\begin{DoxyReturn}{Returns}
+The cache value as a set of strings. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classAbstractCacheValue_af1e45ee62e5dc6b8cf868657df976a8c}\label{classAbstractCacheValue_af1e45ee62e5dc6b8cf868657df976a8c}} 
+\index{AbstractCacheValue@{AbstractCacheValue}!toString@{toString}}
+\index{toString@{toString}!AbstractCacheValue@{AbstractCacheValue}}
+\doxysubsubsection{\texorpdfstring{toString()}{toString()}}
+{\footnotesize\ttfamily std\+::string Abstract\+Cache\+Value\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Convert the std\+::any value of the cache to a string. 
+
+\begin{DoxyReturn}{Returns}
+The cache value as a string. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classAbstractCacheValue_ab605880bad5c8733abe70fdf8a4c35ba}\label{classAbstractCacheValue_ab605880bad5c8733abe70fdf8a4c35ba}} 
+\index{AbstractCacheValue@{AbstractCacheValue}!id\_@{id\_}}
+\index{id\_@{id\_}!AbstractCacheValue@{AbstractCacheValue}}
+\doxysubsubsection{\texorpdfstring{id\_}{id\_}}
+{\footnotesize\ttfamily std\+::string Abstract\+Cache\+Value\+::id\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The ID of the cache value. 
+
+\mbox{\Hypertarget{classAbstractCacheValue_aede70b688a9734f4ec7624602c5300c8}\label{classAbstractCacheValue_aede70b688a9734f4ec7624602c5300c8}} 
+\index{AbstractCacheValue@{AbstractCacheValue}!topic\_@{topic\_}}
+\index{topic\_@{topic\_}!AbstractCacheValue@{AbstractCacheValue}}
+\doxysubsubsection{\texorpdfstring{topic\_}{topic\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classTopic}{Topic}}$\ast$ Abstract\+Cache\+Value\+::topic\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Pointer to the \mbox{\hyperlink{classTopic}{Topic}} associated with this cache value. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{cache__value_8h}{cache\+\_\+value.\+h}}\end{DoxyCompactItemize}

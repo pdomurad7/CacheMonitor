@@ -1,0 +1,99 @@
+\hypertarget{classRedisHandler}{}\doxysection{Redis\+Handler Class Reference}
+\label{classRedisHandler}\index{RedisHandler@{RedisHandler}}
+
+
+A singleton class that manages a connection to a Redis database.  
+
+
+
+
+{\ttfamily \#include $<$redis\+\_\+handler.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classRedisHandler_a7b876ec05f1d52dc6f39da5f7e503f0a}{$\sim$\+Redis\+Handler}} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the singleton class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classRedisHandler_a7ec85ea475ce2d4fad6051c3a77938f5}{Redis\+Handler}} (const \mbox{\hyperlink{classRedisHandler}{Redis\+Handler}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Delete the copy constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classRedisHandler}{Redis\+Handler}} \& \mbox{\hyperlink{classRedisHandler_ad855d158462b1db2a839976ebe1f8c42}{operator=}} (const \mbox{\hyperlink{classRedisHandler}{Redis\+Handler}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Delete the copy assignment operator. \end{DoxyCompactList}\item 
+sw\+::redis\+::\+Redis $\ast$ \mbox{\hyperlink{classRedisHandler_a586527133a43d00bdcbbf7452516cb18}{get\+Redis}} ()
+\begin{DoxyCompactList}\small\item\em Get the Redis connection object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classRedisHandler}{Redis\+Handler}} \& \mbox{\hyperlink{classRedisHandler_a0f9b30b353d099419ff193a2d78f80a5}{get\+Instance}} ()
+\begin{DoxyCompactList}\small\item\em Get the single instance of the {\ttfamily \mbox{\hyperlink{classRedisHandler}{Redis\+Handler}}} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A singleton class that manages a connection to a Redis database. 
+
+This class encapsulates a connection to a Redis database using the {\ttfamily sw\+::redis\+::\+Redis} class. It also maintains a subscriber for the Redis publish/subscribe mechanism, and runs a worker thread that processes incoming messages from subscribed Redis channels and check if value changed, if so add value id to changed paramaters set in value topic. The {\ttfamily get\+Instance} method is used to access the single instance of this class. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classRedisHandler_a7b876ec05f1d52dc6f39da5f7e503f0a}\label{classRedisHandler_a7b876ec05f1d52dc6f39da5f7e503f0a}} 
+\index{RedisHandler@{RedisHandler}!````~RedisHandler@{$\sim$RedisHandler}}
+\index{````~RedisHandler@{$\sim$RedisHandler}!RedisHandler@{RedisHandler}}
+\doxysubsubsection{\texorpdfstring{$\sim$RedisHandler()}{~RedisHandler()}}
+{\footnotesize\ttfamily Redis\+Handler\+::$\sim$\+Redis\+Handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor for the singleton class. 
+
+\mbox{\Hypertarget{classRedisHandler_a7ec85ea475ce2d4fad6051c3a77938f5}\label{classRedisHandler_a7ec85ea475ce2d4fad6051c3a77938f5}} 
+\index{RedisHandler@{RedisHandler}!RedisHandler@{RedisHandler}}
+\index{RedisHandler@{RedisHandler}!RedisHandler@{RedisHandler}}
+\doxysubsubsection{\texorpdfstring{RedisHandler()}{RedisHandler()}}
+{\footnotesize\ttfamily Redis\+Handler\+::\+Redis\+Handler (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classRedisHandler}{Redis\+Handler}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Delete the copy constructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classRedisHandler_a0f9b30b353d099419ff193a2d78f80a5}\label{classRedisHandler_a0f9b30b353d099419ff193a2d78f80a5}} 
+\index{RedisHandler@{RedisHandler}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!RedisHandler@{RedisHandler}}
+\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classRedisHandler}{Redis\+Handler}}\& Redis\+Handler\+::get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get the single instance of the {\ttfamily \mbox{\hyperlink{classRedisHandler}{Redis\+Handler}}} class. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the {\ttfamily \mbox{\hyperlink{classRedisHandler}{Redis\+Handler}}} instance. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRedisHandler_a586527133a43d00bdcbbf7452516cb18}\label{classRedisHandler_a586527133a43d00bdcbbf7452516cb18}} 
+\index{RedisHandler@{RedisHandler}!getRedis@{getRedis}}
+\index{getRedis@{getRedis}!RedisHandler@{RedisHandler}}
+\doxysubsubsection{\texorpdfstring{getRedis()}{getRedis()}}
+{\footnotesize\ttfamily sw\+::redis\+::\+Redis$\ast$ Redis\+Handler\+::get\+Redis (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the Redis connection object. 
+
+\begin{DoxyReturn}{Returns}
+A pointer to the {\ttfamily sw\+::redis\+::\+Redis} object. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classRedisHandler_ad855d158462b1db2a839976ebe1f8c42}\label{classRedisHandler_ad855d158462b1db2a839976ebe1f8c42}} 
+\index{RedisHandler@{RedisHandler}!operator=@{operator=}}
+\index{operator=@{operator=}!RedisHandler@{RedisHandler}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classRedisHandler}{Redis\+Handler}}\& Redis\+Handler\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classRedisHandler}{Redis\+Handler}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Delete the copy assignment operator. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{redis__handler_8h}{redis\+\_\+handler.\+h}}\end{DoxyCompactItemize}

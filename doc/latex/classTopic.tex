@@ -1,0 +1,205 @@
+\hypertarget{classTopic}{}\doxysection{Topic Class Reference}
+\label{classTopic}\index{Topic@{Topic}}
+
+
+A class that represents a topic in the cache.  
+
+
+
+
+{\ttfamily \#include $<$topic.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classTopic_a2010a8f7813a28a5f265778352c8e00a}{Topic}} (const \mbox{\hyperlink{classTopic}{Topic}} \&other)=delete
+\begin{DoxyCompactList}\small\item\em Delete the copy constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classTopic}{Topic}} \& \mbox{\hyperlink{classTopic_a0e37d9c671de6e3eee7c95de0e7ccc2f}{operator=}} (const \mbox{\hyperlink{classTopic}{Topic}} \&other)=delete
+\begin{DoxyCompactList}\small\item\em Delete the copy assignment operator. \end{DoxyCompactList}\item 
+std\+::set$<$ std\+::string $>$ \mbox{\hyperlink{classTopic_a3af681f800cc7d1414fe3c3df3071c4c}{check\+\_\+changed\+\_\+parameters}} ()
+\begin{DoxyCompactList}\small\item\em Check the parameters that have changed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTopic_a8f8732c2db872ee3fa90c14faba9ccad}{clear\+\_\+changed\+\_\+parameters}} ()
+\begin{DoxyCompactList}\small\item\em Clear the set of changed parameters. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTopic_ac92c714738c848ef40e8b54575031551}{remove\+Changed\+Parameter}} (std\+::string parameter)
+\begin{DoxyCompactList}\small\item\em Remove a changed parameter. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classTopic_a001a00fbc9179bc9fe65c4b62ae3b358}{get\+Topic\+Path}} ()
+\begin{DoxyCompactList}\small\item\em Get the path of the topic. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTopic_a824a40aa679c368a4e407bba23269ff2}{add\+Cache\+Value}} (\mbox{\hyperlink{classAbstractCacheValue}{Abstract\+Cache\+Value}} $\ast$cache\+\_\+value)
+\begin{DoxyCompactList}\small\item\em Add a cache value to the topic. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTopic_a68ac787d0136dbdf9aca6363db092564}{remove\+Cache\+Value}} (std\+::string id)
+\begin{DoxyCompactList}\small\item\em Remove a cache value from the topic. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classAbstractCacheValue}{Abstract\+Cache\+Value}} $\ast$ \mbox{\hyperlink{classTopic_a7c3a56c28c33326b685d1d4a37cc1d79}{get\+Cache\+Value}} (std\+::string id)
+\begin{DoxyCompactList}\small\item\em Get a cache value from the topic. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classTopic_a943ba3bfd0224e483c99ad5b8956f960}{exists}} (std\+::string id)
+\begin{DoxyCompactList}\small\item\em Check if a cache value exists. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classTopic_ae1bdfc8db707042dea8ddf57c96fbe54}{Topic\+Manager}}
+\begin{DoxyCompactList}\small\item\em Give the {\ttfamily \mbox{\hyperlink{classTopicManager}{Topic\+Manager}}} class friend access. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class that represents a topic in the cache. 
+
+This class maintains a set of parameters that have changed ({\ttfamily changed\+\_\+parameters\+\_\+}), a map of cache values ({\ttfamily cache\+\_\+values\+\_\+}), and the path of the topic ({\ttfamily topic\+\_\+path\+\_\+}). \mbox{\hyperlink{classTopic}{Topic}} path is path where values from this topic are stored in redis. It provides methods for checking and clearing changed parameters, adding, removing, and accessing cache values, and checking if a cache value exists. It also provides methods for managing the topic path. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classTopic_a2010a8f7813a28a5f265778352c8e00a}\label{classTopic_a2010a8f7813a28a5f265778352c8e00a}} 
+\index{Topic@{Topic}!Topic@{Topic}}
+\index{Topic@{Topic}!Topic@{Topic}}
+\doxysubsubsection{\texorpdfstring{Topic()}{Topic()}}
+{\footnotesize\ttfamily Topic\+::\+Topic (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classTopic}{Topic}} \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Delete the copy constructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classTopic_a824a40aa679c368a4e407bba23269ff2}\label{classTopic_a824a40aa679c368a4e407bba23269ff2}} 
+\index{Topic@{Topic}!addCacheValue@{addCacheValue}}
+\index{addCacheValue@{addCacheValue}!Topic@{Topic}}
+\doxysubsubsection{\texorpdfstring{addCacheValue()}{addCacheValue()}}
+{\footnotesize\ttfamily void Topic\+::add\+Cache\+Value (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classAbstractCacheValue}{Abstract\+Cache\+Value}} $\ast$}]{cache\+\_\+value }\end{DoxyParamCaption})}
+
+
+
+Add a cache value to the topic. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cache\+\_\+value} & A pointer to the {\ttfamily \mbox{\hyperlink{classAbstractCacheValue}{Abstract\+Cache\+Value}}} object to add. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classTopic_a3af681f800cc7d1414fe3c3df3071c4c}\label{classTopic_a3af681f800cc7d1414fe3c3df3071c4c}} 
+\index{Topic@{Topic}!check\_changed\_parameters@{check\_changed\_parameters}}
+\index{check\_changed\_parameters@{check\_changed\_parameters}!Topic@{Topic}}
+\doxysubsubsection{\texorpdfstring{check\_changed\_parameters()}{check\_changed\_parameters()}}
+{\footnotesize\ttfamily std\+::set$<$std\+::string$>$ Topic\+::check\+\_\+changed\+\_\+parameters (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Check the parameters that have changed. 
+
+\begin{DoxyReturn}{Returns}
+A set of the parameters that have changed. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classTopic_a8f8732c2db872ee3fa90c14faba9ccad}\label{classTopic_a8f8732c2db872ee3fa90c14faba9ccad}} 
+\index{Topic@{Topic}!clear\_changed\_parameters@{clear\_changed\_parameters}}
+\index{clear\_changed\_parameters@{clear\_changed\_parameters}!Topic@{Topic}}
+\doxysubsubsection{\texorpdfstring{clear\_changed\_parameters()}{clear\_changed\_parameters()}}
+{\footnotesize\ttfamily void Topic\+::clear\+\_\+changed\+\_\+parameters (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Clear the set of changed parameters. 
+
+\mbox{\Hypertarget{classTopic_a943ba3bfd0224e483c99ad5b8956f960}\label{classTopic_a943ba3bfd0224e483c99ad5b8956f960}} 
+\index{Topic@{Topic}!exists@{exists}}
+\index{exists@{exists}!Topic@{Topic}}
+\doxysubsubsection{\texorpdfstring{exists()}{exists()}}
+{\footnotesize\ttfamily bool Topic\+::exists (\begin{DoxyParamCaption}\item[{std\+::string}]{id }\end{DoxyParamCaption})}
+
+
+
+Check if a cache value exists. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the cache value to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the cache value exists, {\ttfamily false} otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classTopic_a7c3a56c28c33326b685d1d4a37cc1d79}\label{classTopic_a7c3a56c28c33326b685d1d4a37cc1d79}} 
+\index{Topic@{Topic}!getCacheValue@{getCacheValue}}
+\index{getCacheValue@{getCacheValue}!Topic@{Topic}}
+\doxysubsubsection{\texorpdfstring{getCacheValue()}{getCacheValue()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classAbstractCacheValue}{Abstract\+Cache\+Value}}$\ast$ Topic\+::get\+Cache\+Value (\begin{DoxyParamCaption}\item[{std\+::string}]{id }\end{DoxyParamCaption})}
+
+
+
+Get a cache value from the topic. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the cache value to get. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the {\ttfamily \mbox{\hyperlink{classAbstractCacheValue}{Abstract\+Cache\+Value}}} object, or {\ttfamily nullptr} if the cache value does not exist. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classTopic_a001a00fbc9179bc9fe65c4b62ae3b358}\label{classTopic_a001a00fbc9179bc9fe65c4b62ae3b358}} 
+\index{Topic@{Topic}!getTopicPath@{getTopicPath}}
+\index{getTopicPath@{getTopicPath}!Topic@{Topic}}
+\doxysubsubsection{\texorpdfstring{getTopicPath()}{getTopicPath()}}
+{\footnotesize\ttfamily std\+::string Topic\+::get\+Topic\+Path (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the path of the topic. 
+
+\begin{DoxyReturn}{Returns}
+The path of the topic. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classTopic_a0e37d9c671de6e3eee7c95de0e7ccc2f}\label{classTopic_a0e37d9c671de6e3eee7c95de0e7ccc2f}} 
+\index{Topic@{Topic}!operator=@{operator=}}
+\index{operator=@{operator=}!Topic@{Topic}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classTopic}{Topic}}\& Topic\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classTopic}{Topic}} \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+
+
+Delete the copy assignment operator. 
+
+\mbox{\Hypertarget{classTopic_a68ac787d0136dbdf9aca6363db092564}\label{classTopic_a68ac787d0136dbdf9aca6363db092564}} 
+\index{Topic@{Topic}!removeCacheValue@{removeCacheValue}}
+\index{removeCacheValue@{removeCacheValue}!Topic@{Topic}}
+\doxysubsubsection{\texorpdfstring{removeCacheValue()}{removeCacheValue()}}
+{\footnotesize\ttfamily void Topic\+::remove\+Cache\+Value (\begin{DoxyParamCaption}\item[{std\+::string}]{id }\end{DoxyParamCaption})}
+
+
+
+Remove a cache value from the topic. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the cache value to remove. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classTopic_ac92c714738c848ef40e8b54575031551}\label{classTopic_ac92c714738c848ef40e8b54575031551}} 
+\index{Topic@{Topic}!removeChangedParameter@{removeChangedParameter}}
+\index{removeChangedParameter@{removeChangedParameter}!Topic@{Topic}}
+\doxysubsubsection{\texorpdfstring{removeChangedParameter()}{removeChangedParameter()}}
+{\footnotesize\ttfamily void Topic\+::remove\+Changed\+Parameter (\begin{DoxyParamCaption}\item[{std\+::string}]{parameter }\end{DoxyParamCaption})}
+
+
+
+Remove a changed parameter. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parameter} & The parameter to remove. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classTopic_ae1bdfc8db707042dea8ddf57c96fbe54}\label{classTopic_ae1bdfc8db707042dea8ddf57c96fbe54}} 
+\index{Topic@{Topic}!TopicManager@{TopicManager}}
+\index{TopicManager@{TopicManager}!Topic@{Topic}}
+\doxysubsubsection{\texorpdfstring{TopicManager}{TopicManager}}
+{\footnotesize\ttfamily friend class \mbox{\hyperlink{classTopicManager}{Topic\+Manager}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Give the {\ttfamily \mbox{\hyperlink{classTopicManager}{Topic\+Manager}}} class friend access. 
+
+This allows the {\ttfamily \mbox{\hyperlink{classTopicManager}{Topic\+Manager}}} class to access the private members and methods of this class. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{topic_8h}{topic.\+h}}\end{DoxyCompactItemize}

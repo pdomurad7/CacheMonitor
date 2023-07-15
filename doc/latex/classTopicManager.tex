@@ -1,0 +1,159 @@
+\hypertarget{classTopicManager}{}\doxysection{Topic\+Manager Class Reference}
+\label{classTopicManager}\index{TopicManager@{TopicManager}}
+
+
+A singleton class that manages a collection of {\ttfamily \mbox{\hyperlink{classTopic}{Topic}}} objects.  
+
+
+
+
+{\ttfamily \#include $<$topic\+\_\+manager.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classTopic}{Topic}} $\ast$ \mbox{\hyperlink{classTopicManager_a9ed82dc58f25f8d2478bf1634480105b}{get\+Topic}} (std\+::string name)
+\begin{DoxyCompactList}\small\item\em Get a {\ttfamily \mbox{\hyperlink{classTopic}{Topic}}} object by name. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTopicManager_a84583a6cebfbfdbe3ab3f7b7163ba165}{create\+Topic}} (std\+::string name)
+\begin{DoxyCompactList}\small\item\em Create a new {\ttfamily \mbox{\hyperlink{classTopic}{Topic}}} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTopicManager_a385069d590b52a26b886e91e30c01ff0}{remove\+Topic}} (std\+::string name)
+\begin{DoxyCompactList}\small\item\em Remove a {\ttfamily \mbox{\hyperlink{classTopic}{Topic}}} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTopicManager_ad9e1912d77df87e6d8efb534e20e1480}{change\+Topic}} (std\+::string old\+\_\+topic, std\+::string new\+\_\+topic, std\+::string parameter)
+\begin{DoxyCompactList}\small\item\em Change a {\ttfamily \mbox{\hyperlink{classTopic}{Topic}}} object\textquotesingle{}s parameters. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classTopicManager_af86cf987ad0c53459d493af464a944f5}{exists}} (std\+::string name)
+\begin{DoxyCompactList}\small\item\em Check if a {\ttfamily \mbox{\hyperlink{classTopic}{Topic}}} object exists. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTopicManager_ae8a92cb3eef72b12274ae1c755b0cf4d}{add\+Changed\+Parameter}} (std\+::string topic, std\+::string parameter)
+\begin{DoxyCompactList}\small\item\em Add a changed parameter to a {\ttfamily \mbox{\hyperlink{classTopic}{Topic}}} object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classTopicManager}{Topic\+Manager}} \& \mbox{\hyperlink{classTopicManager_a598e14583ef0744862582ba7dd68a737}{get\+Instance}} ()
+\begin{DoxyCompactList}\small\item\em Get the single instance of the {\ttfamily \mbox{\hyperlink{classTopicManager}{Topic\+Manager}}} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A singleton class that manages a collection of {\ttfamily \mbox{\hyperlink{classTopic}{Topic}}} objects. 
+
+This class provides methods for creating, removing, and accessing {\ttfamily \mbox{\hyperlink{classTopic}{Topic}}} objects. It maintains a map of topic names to {\ttfamily \mbox{\hyperlink{classTopic}{Topic}}} pointers. The {\ttfamily get\+Instance} method is used to access the single instance of this class. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classTopicManager_ae8a92cb3eef72b12274ae1c755b0cf4d}\label{classTopicManager_ae8a92cb3eef72b12274ae1c755b0cf4d}} 
+\index{TopicManager@{TopicManager}!addChangedParameter@{addChangedParameter}}
+\index{addChangedParameter@{addChangedParameter}!TopicManager@{TopicManager}}
+\doxysubsubsection{\texorpdfstring{addChangedParameter()}{addChangedParameter()}}
+{\footnotesize\ttfamily void Topic\+Manager\+::add\+Changed\+Parameter (\begin{DoxyParamCaption}\item[{std\+::string}]{topic,  }\item[{std\+::string}]{parameter }\end{DoxyParamCaption})}
+
+
+
+Add a changed parameter to a {\ttfamily \mbox{\hyperlink{classTopic}{Topic}}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em topic} & The name of the topic. \\
+\hline
+{\em parameter} & The parameter that has changed. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classTopicManager_ad9e1912d77df87e6d8efb534e20e1480}\label{classTopicManager_ad9e1912d77df87e6d8efb534e20e1480}} 
+\index{TopicManager@{TopicManager}!changeTopic@{changeTopic}}
+\index{changeTopic@{changeTopic}!TopicManager@{TopicManager}}
+\doxysubsubsection{\texorpdfstring{changeTopic()}{changeTopic()}}
+{\footnotesize\ttfamily void Topic\+Manager\+::change\+Topic (\begin{DoxyParamCaption}\item[{std\+::string}]{old\+\_\+topic,  }\item[{std\+::string}]{new\+\_\+topic,  }\item[{std\+::string}]{parameter }\end{DoxyParamCaption})}
+
+
+
+Change a {\ttfamily \mbox{\hyperlink{classTopic}{Topic}}} object\textquotesingle{}s parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em old\+\_\+topic} & The name of the topic to change. \\
+\hline
+{\em new\+\_\+topic} & The new name for the topic. \\
+\hline
+{\em parameter} & The parameter to change. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classTopicManager_a84583a6cebfbfdbe3ab3f7b7163ba165}\label{classTopicManager_a84583a6cebfbfdbe3ab3f7b7163ba165}} 
+\index{TopicManager@{TopicManager}!createTopic@{createTopic}}
+\index{createTopic@{createTopic}!TopicManager@{TopicManager}}
+\doxysubsubsection{\texorpdfstring{createTopic()}{createTopic()}}
+{\footnotesize\ttfamily void Topic\+Manager\+::create\+Topic (\begin{DoxyParamCaption}\item[{std\+::string}]{name }\end{DoxyParamCaption})}
+
+
+
+Create a new {\ttfamily \mbox{\hyperlink{classTopic}{Topic}}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the new topic. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classTopicManager_af86cf987ad0c53459d493af464a944f5}\label{classTopicManager_af86cf987ad0c53459d493af464a944f5}} 
+\index{TopicManager@{TopicManager}!exists@{exists}}
+\index{exists@{exists}!TopicManager@{TopicManager}}
+\doxysubsubsection{\texorpdfstring{exists()}{exists()}}
+{\footnotesize\ttfamily bool Topic\+Manager\+::exists (\begin{DoxyParamCaption}\item[{std\+::string}]{name }\end{DoxyParamCaption})}
+
+
+
+Check if a {\ttfamily \mbox{\hyperlink{classTopic}{Topic}}} object exists. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the topic to check. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the topic exists, {\ttfamily false} otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classTopicManager_a598e14583ef0744862582ba7dd68a737}\label{classTopicManager_a598e14583ef0744862582ba7dd68a737}} 
+\index{TopicManager@{TopicManager}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!TopicManager@{TopicManager}}
+\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classTopicManager}{Topic\+Manager}}\& Topic\+Manager\+::get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Get the single instance of the {\ttfamily \mbox{\hyperlink{classTopicManager}{Topic\+Manager}}} class. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the {\ttfamily \mbox{\hyperlink{classTopicManager}{Topic\+Manager}}} instance. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classTopicManager_a9ed82dc58f25f8d2478bf1634480105b}\label{classTopicManager_a9ed82dc58f25f8d2478bf1634480105b}} 
+\index{TopicManager@{TopicManager}!getTopic@{getTopic}}
+\index{getTopic@{getTopic}!TopicManager@{TopicManager}}
+\doxysubsubsection{\texorpdfstring{getTopic()}{getTopic()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classTopic}{Topic}}$\ast$ Topic\+Manager\+::get\+Topic (\begin{DoxyParamCaption}\item[{std\+::string}]{name }\end{DoxyParamCaption})}
+
+
+
+Get a {\ttfamily \mbox{\hyperlink{classTopic}{Topic}}} object by name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the topic. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the {\ttfamily \mbox{\hyperlink{classTopic}{Topic}}} object, or {\ttfamily nullptr} if the topic does not exist. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classTopicManager_a385069d590b52a26b886e91e30c01ff0}\label{classTopicManager_a385069d590b52a26b886e91e30c01ff0}} 
+\index{TopicManager@{TopicManager}!removeTopic@{removeTopic}}
+\index{removeTopic@{removeTopic}!TopicManager@{TopicManager}}
+\doxysubsubsection{\texorpdfstring{removeTopic()}{removeTopic()}}
+{\footnotesize\ttfamily void Topic\+Manager\+::remove\+Topic (\begin{DoxyParamCaption}\item[{std\+::string}]{name }\end{DoxyParamCaption})}
+
+
+
+Remove a {\ttfamily \mbox{\hyperlink{classTopic}{Topic}}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the topic to remove. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{topic__manager_8h}{topic\+\_\+manager.\+h}}\end{DoxyCompactItemize}

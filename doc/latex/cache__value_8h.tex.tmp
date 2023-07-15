@@ -1,0 +1,26 @@
+\hypertarget{cache__value_8h}{}\doxysection{cache\+\_\+value.\+h File Reference}
+\label{cache__value_8h}\index{cache\_value.h@{cache\_value.h}}
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$any$>$}\newline
+{\ttfamily \#include $<$redis\+\_\+handler.\+h$>$}\newline
+Include dependency graph for cache\+\_\+value.\+h\+:
+% FIG 0
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classAbstractCacheValue}{Abstract\+Cache\+Value}}
+\begin{DoxyCompactList}\small\item\em Abstract base class for cache values. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classCacheString}{Cache\+String}}
+\begin{DoxyCompactList}\small\item\em A cache value that contains a string. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classCacheInt}{Cache\+Int}}
+\begin{DoxyCompactList}\small\item\em A cache value that contains an integer. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classCacheFloat}{Cache\+Float}}
+\begin{DoxyCompactList}\small\item\em A cache value that contains a float. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classContainerCacheValue}{Container\+Cache\+Value}}
+\begin{DoxyCompactList}\small\item\em An abstract cache value that contains a container. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classCacheList}{Cache\+List}}
+\begin{DoxyCompactList}\small\item\em A cache value that contains a list of strings. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classCacheMap}{Cache\+Map}}
+\begin{DoxyCompactList}\small\item\em A cache value that contains a map of strings to strings. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classCacheSet}{Cache\+Set}}
+\begin{DoxyCompactList}\small\item\em A cache value that contains a set of strings. \end{DoxyCompactList}\end{DoxyCompactItemize}

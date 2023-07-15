@@ -1,0 +1,236 @@
+\hypertarget{classCacheSet}{}\doxysection{Cache\+Set Class Reference}
+\label{classCacheSet}\index{CacheSet@{CacheSet}}
+
+
+A cache value that contains a set of strings.  
+
+
+
+
+{\ttfamily \#include $<$cache\+\_\+value.\+h$>$}
+
+
+
+Inheritance diagram for Cache\+Set\+:
+% FIG 0
+
+
+Collaboration diagram for Cache\+Set\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCacheSet_aa14c9a6683e987611643496db7ee1fdd}{Cache\+Set}} (std\+::string id, std\+::string topic\+\_\+path, std\+::set$<$ std\+::string $>$ value)
+\begin{DoxyCompactList}\small\item\em Construct a new {\ttfamily \mbox{\hyperlink{classCacheSet}{Cache\+Set}}} object with an initial set. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classCacheSet_a1484f382b5591ed81cfe5396b8ecedbf}{$\sim$\+Cache\+Set}} ()=default
+\begin{DoxyCompactList}\small\item\em Destroy the {\ttfamily \mbox{\hyperlink{classCacheSet}{Cache\+Set}}} object. \end{DoxyCompactList}\item 
+std\+::any \mbox{\hyperlink{classCacheSet_a49fd6f361da02c23d1dd43f26d6be467}{get\+Value}} () override
+\begin{DoxyCompactList}\small\item\em Get the set of strings from the cache. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCacheSet_a59d90e0b1cbac4403f41447ee823b698}{set\+Value}} (std\+::set$<$ std\+::string $>$ value)
+\begin{DoxyCompactList}\small\item\em Set the set of strings in the cache. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCacheSet_addbe2e482d0eb493239729cdafceceae}{add\+Value}} (std\+::string val)
+\begin{DoxyCompactList}\small\item\em Add a string to the set. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCacheSet_ad9dfbd724afce4f5a9aa5facaebd983e}{remove\+Value}} (std\+::string val)
+\begin{DoxyCompactList}\small\item\em Remove a string from the set. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classCacheSet_ab584c178b041a96cf401c32fe6f0a6a5}{contains}} (std\+::string val) override
+\begin{DoxyCompactList}\small\item\em Check if the set contains a certain string. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classCacheSet_ab91947e79cd5dc6a7810a4e08095d48f}{size}} () override
+\begin{DoxyCompactList}\small\item\em Get the size of the set. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classCacheSet_ab4ab22f98bf427d02ab0f8731812660c}{empty}} () override
+\begin{DoxyCompactList}\small\item\em Check if the set is empty. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCacheSet_ac2dfcaa187e746cfac07546797c45eb4}{clear}} () override
+\begin{DoxyCompactList}\small\item\em Clear the set. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+A cache value that contains a set of strings. 
+
+This class inherits from the {\ttfamily \mbox{\hyperlink{classContainerCacheValue}{Container\+Cache\+Value}}} base class and encapsulates a set of strings. It provides an implementation of the {\ttfamily get\+Value}, {\ttfamily set\+Value}, {\ttfamily size}, {\ttfamily contains}, {\ttfamily empty}, and {\ttfamily clear} methods. The {\ttfamily add\+Value\+To\+Redis\+\_\+} method, which is used to add the set to a Redis database, is also overridden in this class. Additional methods for manipulating the set ({\ttfamily add\+Value}, {\ttfamily remove\+Value}) are also provided. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classCacheSet_aa14c9a6683e987611643496db7ee1fdd}\label{classCacheSet_aa14c9a6683e987611643496db7ee1fdd}} 
+\index{CacheSet@{CacheSet}!CacheSet@{CacheSet}}
+\index{CacheSet@{CacheSet}!CacheSet@{CacheSet}}
+\doxysubsubsection{\texorpdfstring{CacheSet()}{CacheSet()}}
+{\footnotesize\ttfamily Cache\+Set\+::\+Cache\+Set (\begin{DoxyParamCaption}\item[{std\+::string}]{id,  }\item[{std\+::string}]{topic\+\_\+path,  }\item[{std\+::set$<$ std\+::string $>$}]{value }\end{DoxyParamCaption})}
+
+
+
+Construct a new {\ttfamily \mbox{\hyperlink{classCacheSet}{Cache\+Set}}} object with an initial set. 
+
+This constructor initializes the {\ttfamily id\+\_\+} and {\ttfamily topic\+\_\+} members of the base class and the {\ttfamily value\+\_\+} member of this class with the given parameters.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the cache value. \\
+\hline
+{\em topic\+\_\+path} & The topic path of the cache value. \\
+\hline
+{\em value} & The initial set of strings. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCacheSet_a1484f382b5591ed81cfe5396b8ecedbf}\label{classCacheSet_a1484f382b5591ed81cfe5396b8ecedbf}} 
+\index{CacheSet@{CacheSet}!````~CacheSet@{$\sim$CacheSet}}
+\index{````~CacheSet@{$\sim$CacheSet}!CacheSet@{CacheSet}}
+\doxysubsubsection{\texorpdfstring{$\sim$CacheSet()}{~CacheSet()}}
+{\footnotesize\ttfamily Cache\+Set\+::$\sim$\+Cache\+Set (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Destroy the {\ttfamily \mbox{\hyperlink{classCacheSet}{Cache\+Set}}} object. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCacheSet_addbe2e482d0eb493239729cdafceceae}\label{classCacheSet_addbe2e482d0eb493239729cdafceceae}} 
+\index{CacheSet@{CacheSet}!addValue@{addValue}}
+\index{addValue@{addValue}!CacheSet@{CacheSet}}
+\doxysubsubsection{\texorpdfstring{addValue()}{addValue()}}
+{\footnotesize\ttfamily void Cache\+Set\+::add\+Value (\begin{DoxyParamCaption}\item[{std\+::string}]{val }\end{DoxyParamCaption})}
+
+
+
+Add a string to the set. 
+
+This method adds a string to the {\ttfamily value\+\_\+} set. Updates value in Redis.
+
+
+\begin{DoxyParams}{Parameters}
+{\em val} & The string to add. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCacheSet_ac2dfcaa187e746cfac07546797c45eb4}\label{classCacheSet_ac2dfcaa187e746cfac07546797c45eb4}} 
+\index{CacheSet@{CacheSet}!clear@{clear}}
+\index{clear@{clear}!CacheSet@{CacheSet}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily void Cache\+Set\+::clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Clear the set. 
+
+This method is overridden from the {\ttfamily \mbox{\hyperlink{classContainerCacheValue}{Container\+Cache\+Value}}} base class. It clears the {\ttfamily value\+\_\+} set and removes the set from the Redis. 
+
+Implements \mbox{\hyperlink{classContainerCacheValue_aa5a84b1517a4cd5b5a4f36fa1aaa6a5a}{Container\+Cache\+Value}}.
+
+\mbox{\Hypertarget{classCacheSet_ab584c178b041a96cf401c32fe6f0a6a5}\label{classCacheSet_ab584c178b041a96cf401c32fe6f0a6a5}} 
+\index{CacheSet@{CacheSet}!contains@{contains}}
+\index{contains@{contains}!CacheSet@{CacheSet}}
+\doxysubsubsection{\texorpdfstring{contains()}{contains()}}
+{\footnotesize\ttfamily bool Cache\+Set\+::contains (\begin{DoxyParamCaption}\item[{std\+::string}]{val }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Check if the set contains a certain string. 
+
+This method is overridden from the {\ttfamily \mbox{\hyperlink{classContainerCacheValue}{Container\+Cache\+Value}}} base class. Checks if value in redis has changed. If so, we update and returns up to date result.
+
+
+\begin{DoxyParams}{Parameters}
+{\em val} & The string to check for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the set contains the string, {\ttfamily false} otherwise. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classContainerCacheValue_a026c9c6c3e4c9bc826bbe5551d3ccf1f}{Container\+Cache\+Value}}.
+
+\mbox{\Hypertarget{classCacheSet_ab4ab22f98bf427d02ab0f8731812660c}\label{classCacheSet_ab4ab22f98bf427d02ab0f8731812660c}} 
+\index{CacheSet@{CacheSet}!empty@{empty}}
+\index{empty@{empty}!CacheSet@{CacheSet}}
+\doxysubsubsection{\texorpdfstring{empty()}{empty()}}
+{\footnotesize\ttfamily bool Cache\+Set\+::empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Check if the set is empty. 
+
+This method is overridden from the {\ttfamily \mbox{\hyperlink{classContainerCacheValue}{Container\+Cache\+Value}}} base class. Checks if value in redis has changed. If so, we update and returns up to date result.
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the set is empty, {\ttfamily false} otherwise. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classContainerCacheValue_a838fe45c7124f0889b946db5dd71e73c}{Container\+Cache\+Value}}.
+
+\mbox{\Hypertarget{classCacheSet_a49fd6f361da02c23d1dd43f26d6be467}\label{classCacheSet_a49fd6f361da02c23d1dd43f26d6be467}} 
+\index{CacheSet@{CacheSet}!getValue@{getValue}}
+\index{getValue@{getValue}!CacheSet@{CacheSet}}
+\doxysubsubsection{\texorpdfstring{getValue()}{getValue()}}
+{\footnotesize\ttfamily std\+::any Cache\+Set\+::get\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get the set of strings from the cache. 
+
+This method is overridden from the {\ttfamily \mbox{\hyperlink{classContainerCacheValue}{Container\+Cache\+Value}}} base class. Checks if value in redis has changed. If so, we update and returns new value.
+
+\begin{DoxyReturn}{Returns}
+The set of strings from the cache as a {\ttfamily std\+::any} object. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classAbstractCacheValue_a5d107685012c1c14a0007cafab8de884}{Abstract\+Cache\+Value}}.
+
+\mbox{\Hypertarget{classCacheSet_ad9dfbd724afce4f5a9aa5facaebd983e}\label{classCacheSet_ad9dfbd724afce4f5a9aa5facaebd983e}} 
+\index{CacheSet@{CacheSet}!removeValue@{removeValue}}
+\index{removeValue@{removeValue}!CacheSet@{CacheSet}}
+\doxysubsubsection{\texorpdfstring{removeValue()}{removeValue()}}
+{\footnotesize\ttfamily void Cache\+Set\+::remove\+Value (\begin{DoxyParamCaption}\item[{std\+::string}]{val }\end{DoxyParamCaption})}
+
+
+
+Remove a string from the set. 
+
+This method removes a string from the {\ttfamily value\+\_\+} set. Updates value in Redis.
+
+
+\begin{DoxyParams}{Parameters}
+{\em val} & The string to remove. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCacheSet_a59d90e0b1cbac4403f41447ee823b698}\label{classCacheSet_a59d90e0b1cbac4403f41447ee823b698}} 
+\index{CacheSet@{CacheSet}!setValue@{setValue}}
+\index{setValue@{setValue}!CacheSet@{CacheSet}}
+\doxysubsubsection{\texorpdfstring{setValue()}{setValue()}}
+{\footnotesize\ttfamily void Cache\+Set\+::set\+Value (\begin{DoxyParamCaption}\item[{std\+::set$<$ std\+::string $>$}]{value }\end{DoxyParamCaption})}
+
+
+
+Set the set of strings in the cache. 
+
+This method sets the {\ttfamily value\+\_\+} member of this class to the given set of strings and updates the set in the Redis.
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The new set of strings. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCacheSet_ab91947e79cd5dc6a7810a4e08095d48f}\label{classCacheSet_ab91947e79cd5dc6a7810a4e08095d48f}} 
+\index{CacheSet@{CacheSet}!size@{size}}
+\index{size@{size}!CacheSet@{CacheSet}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily int Cache\+Set\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get the size of the set. 
+
+This method is overridden from the {\ttfamily \mbox{\hyperlink{classContainerCacheValue}{Container\+Cache\+Value}}} base class. Checks if value in redis has changed. If so, we update and returns up to date result.
+
+\begin{DoxyReturn}{Returns}
+The size of the set. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classContainerCacheValue_a34de75f67851b744870b8b55f2df9c36}{Container\+Cache\+Value}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{cache__value_8h}{cache\+\_\+value.\+h}}\end{DoxyCompactItemize}

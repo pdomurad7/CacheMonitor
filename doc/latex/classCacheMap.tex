@@ -1,0 +1,260 @@
+\hypertarget{classCacheMap}{}\doxysection{Cache\+Map Class Reference}
+\label{classCacheMap}\index{CacheMap@{CacheMap}}
+
+
+A cache value that contains a map of strings to strings.  
+
+
+
+
+{\ttfamily \#include $<$cache\+\_\+value.\+h$>$}
+
+
+
+Inheritance diagram for Cache\+Map\+:
+% FIG 0
+
+
+Collaboration diagram for Cache\+Map\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classCacheMap_a44c9e6ed8884484e48252386671d6d91}{Cache\+Map}} (std\+::string id, std\+::string topic\+\_\+path, std\+::map$<$ std\+::string, std\+::string $>$ value)
+\begin{DoxyCompactList}\small\item\em Construct a new {\ttfamily \mbox{\hyperlink{classCacheMap}{Cache\+Map}}} object with an initial map. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classCacheMap_acd3f41dc447118457e91caf904680aa8}{$\sim$\+Cache\+Map}} ()=default
+\begin{DoxyCompactList}\small\item\em Destroy the {\ttfamily \mbox{\hyperlink{classCacheMap}{Cache\+Map}}} object. \end{DoxyCompactList}\item 
+std\+::any \mbox{\hyperlink{classCacheMap_a9c0a3904768484146fdf189bc483911f}{get\+Value}} () override
+\begin{DoxyCompactList}\small\item\em Get the map of strings from the cache. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCacheMap_ab1645839ee78d4639866155c28789810}{set\+Value}} (std\+::map$<$ std\+::string, std\+::string $>$ value)
+\begin{DoxyCompactList}\small\item\em Set the map of strings in the cache. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCacheMap_ac29ab0d15223193f094ae176ce4a7e76}{add\+Key}} (std\+::string key, std\+::string value)
+\begin{DoxyCompactList}\small\item\em Add a key-\/value pair to the map. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCacheMap_acbb950cd5ac543372a2fd420a1e9f3ba}{erase\+Key}} (std\+::string key)
+\begin{DoxyCompactList}\small\item\em Erase a key-\/value pair from the map. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classCacheMap_a4b0afee7eaadf96fdfe54abe181b04d4}{get\+Key}} (std\+::string key)
+\begin{DoxyCompactList}\small\item\em Get the value associated with a key in the map. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classCacheMap_a82db99298b2df1a3cc87d873e3397de2}{size}} () override
+\begin{DoxyCompactList}\small\item\em Get the size of the map. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classCacheMap_a5b789ad9ce21b0e9a18b9a95b020ec3e}{contains}} (std\+::string key) override
+\begin{DoxyCompactList}\small\item\em Check if the map contains a certain key. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classCacheMap_ad736652fefd4c9ac0c59ec0b8e97f50a}{empty}} () override
+\begin{DoxyCompactList}\small\item\em Check if the map is empty. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classCacheMap_a6bc8efc34e8c1d62ae6e3768fb391319}{clear}} () override
+\begin{DoxyCompactList}\small\item\em Clear the map. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+A cache value that contains a map of strings to strings. 
+
+This class inherits from the {\ttfamily \mbox{\hyperlink{classContainerCacheValue}{Container\+Cache\+Value}}} base class and encapsulates a map of strings. It provides an implementation of the {\ttfamily get\+Value}, {\ttfamily set\+Value}, {\ttfamily size}, {\ttfamily contains}, {\ttfamily empty}, and {\ttfamily clear} methods. The {\ttfamily add\+Value\+To\+Redis\+\_\+} method, which is used to add the map to a Redis database, is also overridden in this class. Additional methods for manipulating the map ({\ttfamily add\+Key}, {\ttfamily erase\+Key}, {\ttfamily get\+Key}) are also provided. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classCacheMap_a44c9e6ed8884484e48252386671d6d91}\label{classCacheMap_a44c9e6ed8884484e48252386671d6d91}} 
+\index{CacheMap@{CacheMap}!CacheMap@{CacheMap}}
+\index{CacheMap@{CacheMap}!CacheMap@{CacheMap}}
+\doxysubsubsection{\texorpdfstring{CacheMap()}{CacheMap()}}
+{\footnotesize\ttfamily Cache\+Map\+::\+Cache\+Map (\begin{DoxyParamCaption}\item[{std\+::string}]{id,  }\item[{std\+::string}]{topic\+\_\+path,  }\item[{std\+::map$<$ std\+::string, std\+::string $>$}]{value }\end{DoxyParamCaption})}
+
+
+
+Construct a new {\ttfamily \mbox{\hyperlink{classCacheMap}{Cache\+Map}}} object with an initial map. 
+
+This constructor initializes the {\ttfamily id\+\_\+} and {\ttfamily topic\+\_\+} members of the base class and the {\ttfamily value\+\_\+} member of this class with the given parameters.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the cache value. \\
+\hline
+{\em topic\+\_\+path} & The topic path of the cache value. \\
+\hline
+{\em value} & The initial map of strings. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCacheMap_acd3f41dc447118457e91caf904680aa8}\label{classCacheMap_acd3f41dc447118457e91caf904680aa8}} 
+\index{CacheMap@{CacheMap}!````~CacheMap@{$\sim$CacheMap}}
+\index{````~CacheMap@{$\sim$CacheMap}!CacheMap@{CacheMap}}
+\doxysubsubsection{\texorpdfstring{$\sim$CacheMap()}{~CacheMap()}}
+{\footnotesize\ttfamily Cache\+Map\+::$\sim$\+Cache\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+Destroy the {\ttfamily \mbox{\hyperlink{classCacheMap}{Cache\+Map}}} object. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classCacheMap_ac29ab0d15223193f094ae176ce4a7e76}\label{classCacheMap_ac29ab0d15223193f094ae176ce4a7e76}} 
+\index{CacheMap@{CacheMap}!addKey@{addKey}}
+\index{addKey@{addKey}!CacheMap@{CacheMap}}
+\doxysubsubsection{\texorpdfstring{addKey()}{addKey()}}
+{\footnotesize\ttfamily void Cache\+Map\+::add\+Key (\begin{DoxyParamCaption}\item[{std\+::string}]{key,  }\item[{std\+::string}]{value }\end{DoxyParamCaption})}
+
+
+
+Add a key-\/value pair to the map. 
+
+This method adds a key-\/value pair to the {\ttfamily value\+\_\+} map. Updates value in Redis.
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key to add. \\
+\hline
+{\em value} & The value to add. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCacheMap_a6bc8efc34e8c1d62ae6e3768fb391319}\label{classCacheMap_a6bc8efc34e8c1d62ae6e3768fb391319}} 
+\index{CacheMap@{CacheMap}!clear@{clear}}
+\index{clear@{clear}!CacheMap@{CacheMap}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily void Cache\+Map\+::clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Clear the map. 
+
+This method is overridden from the {\ttfamily \mbox{\hyperlink{classContainerCacheValue}{Container\+Cache\+Value}}} base class. It clears the {\ttfamily value\+\_\+} map and removes the map from the Redis. 
+
+Implements \mbox{\hyperlink{classContainerCacheValue_aa5a84b1517a4cd5b5a4f36fa1aaa6a5a}{Container\+Cache\+Value}}.
+
+\mbox{\Hypertarget{classCacheMap_a5b789ad9ce21b0e9a18b9a95b020ec3e}\label{classCacheMap_a5b789ad9ce21b0e9a18b9a95b020ec3e}} 
+\index{CacheMap@{CacheMap}!contains@{contains}}
+\index{contains@{contains}!CacheMap@{CacheMap}}
+\doxysubsubsection{\texorpdfstring{contains()}{contains()}}
+{\footnotesize\ttfamily bool Cache\+Map\+::contains (\begin{DoxyParamCaption}\item[{std\+::string}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Check if the map contains a certain key. 
+
+This method is overridden from the {\ttfamily \mbox{\hyperlink{classContainerCacheValue}{Container\+Cache\+Value}}} base class. Checks if value in redis has changed. If so, we update and returns up to date result.
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key to check for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the map contains the key, {\ttfamily false} otherwise. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classContainerCacheValue_a026c9c6c3e4c9bc826bbe5551d3ccf1f}{Container\+Cache\+Value}}.
+
+\mbox{\Hypertarget{classCacheMap_ad736652fefd4c9ac0c59ec0b8e97f50a}\label{classCacheMap_ad736652fefd4c9ac0c59ec0b8e97f50a}} 
+\index{CacheMap@{CacheMap}!empty@{empty}}
+\index{empty@{empty}!CacheMap@{CacheMap}}
+\doxysubsubsection{\texorpdfstring{empty()}{empty()}}
+{\footnotesize\ttfamily bool Cache\+Map\+::empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Check if the map is empty. 
+
+This method is overridden from the {\ttfamily \mbox{\hyperlink{classContainerCacheValue}{Container\+Cache\+Value}}} base class. Checks if value in redis has changed. If so, we update and returns up to date result.
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if the map is empty, {\ttfamily false} otherwise. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classContainerCacheValue_a838fe45c7124f0889b946db5dd71e73c}{Container\+Cache\+Value}}.
+
+\mbox{\Hypertarget{classCacheMap_acbb950cd5ac543372a2fd420a1e9f3ba}\label{classCacheMap_acbb950cd5ac543372a2fd420a1e9f3ba}} 
+\index{CacheMap@{CacheMap}!eraseKey@{eraseKey}}
+\index{eraseKey@{eraseKey}!CacheMap@{CacheMap}}
+\doxysubsubsection{\texorpdfstring{eraseKey()}{eraseKey()}}
+{\footnotesize\ttfamily void Cache\+Map\+::erase\+Key (\begin{DoxyParamCaption}\item[{std\+::string}]{key }\end{DoxyParamCaption})}
+
+
+
+Erase a key-\/value pair from the map. 
+
+This method erases a key-\/value pair from the {\ttfamily value\+\_\+} map using the key. Updates value in Redis.
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key of the key-\/value pair to erase. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCacheMap_a4b0afee7eaadf96fdfe54abe181b04d4}\label{classCacheMap_a4b0afee7eaadf96fdfe54abe181b04d4}} 
+\index{CacheMap@{CacheMap}!getKey@{getKey}}
+\index{getKey@{getKey}!CacheMap@{CacheMap}}
+\doxysubsubsection{\texorpdfstring{getKey()}{getKey()}}
+{\footnotesize\ttfamily std\+::string Cache\+Map\+::get\+Key (\begin{DoxyParamCaption}\item[{std\+::string}]{key }\end{DoxyParamCaption})}
+
+
+
+Get the value associated with a key in the map. 
+
+This method chekc if value changed and returns the value associated with a key in the {\ttfamily value\+\_\+} map. If key does not exist, throw std\+::invalid\+\_\+argument.
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & The key to search for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value associated with the key. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCacheMap_a9c0a3904768484146fdf189bc483911f}\label{classCacheMap_a9c0a3904768484146fdf189bc483911f}} 
+\index{CacheMap@{CacheMap}!getValue@{getValue}}
+\index{getValue@{getValue}!CacheMap@{CacheMap}}
+\doxysubsubsection{\texorpdfstring{getValue()}{getValue()}}
+{\footnotesize\ttfamily std\+::any Cache\+Map\+::get\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get the map of strings from the cache. 
+
+This method is overridden from the {\ttfamily \mbox{\hyperlink{classContainerCacheValue}{Container\+Cache\+Value}}} base class. Checks if value in redis has changed. If so, we update and returns new value.
+
+\begin{DoxyReturn}{Returns}
+The map of strings from the cache as a {\ttfamily std\+::any} object. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classAbstractCacheValue_a5d107685012c1c14a0007cafab8de884}{Abstract\+Cache\+Value}}.
+
+\mbox{\Hypertarget{classCacheMap_ab1645839ee78d4639866155c28789810}\label{classCacheMap_ab1645839ee78d4639866155c28789810}} 
+\index{CacheMap@{CacheMap}!setValue@{setValue}}
+\index{setValue@{setValue}!CacheMap@{CacheMap}}
+\doxysubsubsection{\texorpdfstring{setValue()}{setValue()}}
+{\footnotesize\ttfamily void Cache\+Map\+::set\+Value (\begin{DoxyParamCaption}\item[{std\+::map$<$ std\+::string, std\+::string $>$}]{value }\end{DoxyParamCaption})}
+
+
+
+Set the map of strings in the cache. 
+
+This method sets the {\ttfamily value\+\_\+} member of this class to the given map of strings and updates the map in the Redis.
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The new map of strings. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCacheMap_a82db99298b2df1a3cc87d873e3397de2}\label{classCacheMap_a82db99298b2df1a3cc87d873e3397de2}} 
+\index{CacheMap@{CacheMap}!size@{size}}
+\index{size@{size}!CacheMap@{CacheMap}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily int Cache\+Map\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Get the size of the map. 
+
+This method is overridden from the {\ttfamily \mbox{\hyperlink{classContainerCacheValue}{Container\+Cache\+Value}}} base class. Checks if value in redis has changed. If so, we update and returns up to date result.
+
+\begin{DoxyReturn}{Returns}
+The size of the map. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classContainerCacheValue_a34de75f67851b744870b8b55f2df9c36}{Container\+Cache\+Value}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{cache__value_8h}{cache\+\_\+value.\+h}}\end{DoxyCompactItemize}
