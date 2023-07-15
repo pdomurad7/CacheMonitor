@@ -57,17 +57,14 @@ void AbstractCacheValue::removeValueFromRedis_(){
     RedisHandler::getInstance().getRedis()->del(topic_->getTopicPath() + ":" + id_);
 }
 
-SimpleCacheValue::SimpleCacheValue(std::string id, std::string topic_path) : AbstractCacheValue(id, topic_path){}
-
-
-CacheString::CacheString(std::string id, std::string topic_path) : SimpleCacheValue(id, topic_path){
+CacheString::CacheString(std::string id, std::string topic_path) : AbstractCacheValue(id, topic_path){
     // TODO same as in another constructor
     value_ = "";
     TopicManager::getInstance().getTopic(topic_path)->addCacheValue(this);
     addValueToRedis_();
 }
 
-CacheString::CacheString(std::string id, std::string topic_path, std::string value) : SimpleCacheValue(id, topic_path){
+CacheString::CacheString(std::string id, std::string topic_path, std::string value) : AbstractCacheValue(id, topic_path){
     value_ = value;
     // TODO check if topic exists
     TopicManager::getInstance().getTopic(topic_path)->addCacheValue(this);
@@ -79,7 +76,7 @@ std::any CacheString::getValue() {
         value_ = *RedisHandler::getInstance().getRedis()->get(topic_->getTopicPath() + ":" + id_);
         topic_->removeChangedParameter(id_);
     }
-    return deserialize(value_);
+    return value_;
 }
 
 void CacheString::setValue(std::string value){
@@ -92,13 +89,13 @@ void CacheString::addValueToRedis_(){
 }
 
 
-CacheInt::CacheInt(std::string id, std::string topic_path) : SimpleCacheValue(id, topic_path){
+CacheInt::CacheInt(std::string id, std::string topic_path) : AbstractCacheValue(id, topic_path){
     value_ = 0;
     TopicManager::getInstance().getTopic(topic_path)->addCacheValue(this);
     addValueToRedis_();
 }
 
-CacheInt::CacheInt(std::string id, std::string topic_path, int value) : SimpleCacheValue(id, topic_path){
+CacheInt::CacheInt(std::string id, std::string topic_path, int value) : AbstractCacheValue(id, topic_path){
     value_ = value;
     TopicManager::getInstance().getTopic(topic_path)->addCacheValue(this);
     addValueToRedis_();
@@ -121,13 +118,13 @@ void CacheInt::addValueToRedis_(){
     RedisHandler::getInstance().getRedis()->set(topic_->getTopicPath() + ":" + id_, std::to_string(value_));
 }
 
-CacheFloat::CacheFloat(std::string id, std::string topic_path) : SimpleCacheValue(id, topic_path){
+CacheFloat::CacheFloat(std::string id, std::string topic_path) : AbstractCacheValue(id, topic_path){
     value_ = 0.0f;
     TopicManager::getInstance().getTopic(topic_path)->addCacheValue(this);
     addValueToRedis_();
 }
 
-CacheFloat::CacheFloat(std::string id, std::string topic_path, float value) : SimpleCacheValue(id, topic_path){
+CacheFloat::CacheFloat(std::string id, std::string topic_path, float value) : AbstractCacheValue(id, topic_path){
     value_ = value;
     TopicManager::getInstance().getTopic(topic_path)->addCacheValue(this);
     addValueToRedis_();
@@ -138,7 +135,7 @@ std::any CacheFloat::getValue() {
         value_ = std::stof(*RedisHandler::getInstance().getRedis()->get(topic_->getTopicPath() + ":" + id_));
         topic_->removeChangedParameter(id_);
     }
-    return deserialize(value_);
+    return value_;
 }
 
 void CacheFloat::setValue(float value){
@@ -167,17 +164,13 @@ void CacheList::setValue(std::list<std::string> value){
     addValueToRedis_();
 }
 
-std::any CacheList::deserialize(std::list<std::string> value){
-    return value;
-}
-
 std::any CacheList::getValue(){
     if (topic_->check_changed_parameters().contains(id_)) {
         value_.clear();
         RedisHandler::getInstance().getRedis()->lrange(topic_->getTopicPath() + ":" + id_, 0, -1, std::back_inserter(value_));
         topic_->removeChangedParameter(id_);
     }
-    return deserialize(value_);
+    return value_;
 }
 
 void CacheList::rpush(std::string value){
@@ -248,17 +241,13 @@ void CacheMap::setValue(std::map<std::string, std::string> value){
     addValueToRedis_();
 }
 
-std::any CacheMap::deserialize(std::map<std::string, std::string> value){
-    return value;
-}
-
 std::any CacheMap::getValue(){
     if (topic_->check_changed_parameters().contains(id_)) {
         value_.clear();
         RedisHandler::getInstance().getRedis()->hgetall(topic_->getTopicPath() + ":" + id_, std::inserter(value_, value_.begin()));
         topic_->removeChangedParameter(id_);
     }
-    return deserialize(value_);
+    return value_;
 }
 
 void CacheMap::addKey(std::string key, std::string val){
@@ -333,17 +322,13 @@ CacheSet::CacheSet(std::string id, std::string topic_path, std::set<std::string>
     addValueToRedis_();
 }
 
-std::any CacheSet::deserialize(std::set<std::string> value){
-    return value;
-}
-
 std::any CacheSet::getValue(){
     if (topic_->check_changed_parameters().contains(id_)) {
         value_.clear();
         RedisHandler::getInstance().getRedis()->smembers(topic_->getTopicPath() + ":" + id_, std::inserter(value_, value_.begin()));
         topic_->removeChangedParameter(id_);
     }
-    return deserialize(value_);
+    return value_;
 }
 
 void CacheSet::setValue(std::set<std::string> value){

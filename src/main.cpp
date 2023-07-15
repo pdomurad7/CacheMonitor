@@ -27,8 +27,6 @@ TEST_F(TestCacheMonitor, CheckCacheString)
 
     cache_value->setValue("new_value");
     ASSERT_EQ("new_value", cache_value->toString()) << "CacheString value after set is not correct";
-    auto x = cache_value->getValue();
-    std::cout<<x.type().name()<<std::endl;
 }
 
 TEST_F(TestCacheMonitor, CheckCacheInt)
@@ -77,8 +75,6 @@ TEST_F(TestCacheMonitor, CheckCacheMap)
 {
     TopicManager::getInstance().createTopic("test_topic");
     auto cache_value = std::make_shared<CacheMap>("test_map_id", "test_topic", std::map<std::string, std::string>{{"test_key1", "test_value1"}, {"test_key2", "test_value2"}});
-    auto x = cache_value->getValue();
-    std::cout<<x.type().name()<<std::endl;
     ASSERT_TRUE(cache_value->contains("test_key1")) << "CacheMap does not contain test_key1";
     ASSERT_FALSE(cache_value->contains("test_key3")) << "CacheMap contains test_key3";
     ASSERT_EQ(2, cache_value->size()) << "CacheMap size is not correct";

@@ -30,19 +30,7 @@ public:
     virtual std::any getValue() = 0;
 };
 
-class SimpleCacheValue : public AbstractCacheValue{
-protected:
-    template <typename T>
-    std::any deserialize(T value){
-        return std::any_cast<T>(value);
-    }
-
-public:
-    SimpleCacheValue(std::string, std::string);
-    virtual ~SimpleCacheValue() = default;
-};
-
-class CacheString : public SimpleCacheValue{
+class CacheString : public AbstractCacheValue{
     std::string value_;
     void addValueToRedis_() override;
 
@@ -54,7 +42,7 @@ public:
     void setValue(std::string);
 };
 
-class CacheInt : public SimpleCacheValue {
+class CacheInt : public AbstractCacheValue {
     int value_;
     void addValueToRedis_() override;
 
@@ -65,7 +53,7 @@ public:
     std::any getValue() override;
     void setValue(int value);
 };
-class CacheFloat : public SimpleCacheValue {
+class CacheFloat : public AbstractCacheValue {
     float value_;
     void addValueToRedis_() override;
 
